@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter — AmericanInFrance.fr | Gershon Consulting</title>
+  <meta name="description" content="Subscribe to the AmericanInFrance newsletter — bi-weekly digest for Americans living in France. Tax updates, visa news, business opportunities, Franco-American trade.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .newsletter-layout { display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: start; }
+    .sample-issue { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--light-grey); overflow: hidden; box-shadow: var(--shadow-md); }
+    .issue-header { background: var(--navy); padding: 24px 28px; }
+    .issue-header .issue-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 6px; }
+    .issue-header h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 4px; }
+    .issue-header .issue-meta { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .issue-body { padding: 24px 28px; }
+    .issue-section { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--light-grey); }
+    .issue-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .issue-section .is-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold); margin-bottom: 8px; display: block; }
+    .issue-section h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
+    .issue-section p { font-size: 0.82rem; color: var(--mid-grey); margin: 0; line-height: 1.6; }
+    .benefit-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--light-grey); }
+    .benefit-item:last-child { border-bottom: none; }
+    .benefit-icon { width: 48px; height: 48px; min-width: 48px; background: linear-gradient(135deg, rgba(10,31,92,0.06), rgba(201,168,76,0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .subscriber-count { background: var(--navy); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+    @media (max-width: 900px) { .newsletter-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo" style="text-decoration:none;">
+      <span class="logo-main">American<span>In</span>France</span>
+      <span class="logo-sub">A Gershon Consulting Initiative</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">Weekly Digest</a></li>
+      <li><a href="resources.html">Resource Hub</a></li>
+      <li><a href="newsletter.html" class="active">Newsletter</a></li>
+      <li><a href="partners.html">Become a Partner</a></li>
+      <li><a href="partners.html" class="nav-cta">Join the Network</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--gold); display:block; margin-bottom:10px;">Stay Informed</span>
+    <h1>The AmericanInFrance Newsletter</h1>
+    <p>The bi-weekly intelligence digest for Americans living and working in France. Tax updates, visa changes, business opportunities — delivered to your inbox.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter-layout">
+
+      <!-- LEFT: Benefits + Form -->
+      <div>
+        <h2 style="margin-bottom:8px;">Why Subscribe?</h2>
+        <p style="color:var(--mid-grey); margin-bottom:32px;">Join hundreds of Americans in France who rely on our newsletter to stay informed, compliant, and connected.</p>
+
+        <div>
+          <div class="benefit-item">
+            <div class="benefit-icon">💸</div>
+            <div>
+              <h4 style="color:var(--navy); margin-bottom:4px;">Tax Law Alerts</h4>
+              <p style="color:var(--mid-grey); font-size:0.9rem;">IRS deadlines, FBAR/FATCA changes, US-France treaty updates, French fiscal news that impacts Americans.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🛂</div>
+            <div>
+              <h4 style="color:var(--navy); margin-bottom:4px;">Visa & Residency Updates</h4>
+              <p style="color:var(--mid-grey); font-size:0.9rem;">Changes to French visa rules, prefecture procedures, new prefectural platforms, residency permit news.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🏢</div>
+            <div>
+              <h4 style="color:var(--navy); margin-bottom:4px;">Franco-American Business Intelligence</h4>
+              <p style="color:var(--mid-grey); font-size:0.9rem;">Trade policy news, US market opportunities for French companies, AmCham events, Gershon Consulting insights.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🤝</div>
+            <div>
+              <h4 style="color:var(--navy); margin-bottom:4px;">Community & Networking</h4>
+              <p style="color:var(--mid-grey); font-size:0.9rem;">Events for Americans in France, new resources added to our hub, partner spotlights, consultant introductions.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">💡</div>
+            <div>
+              <h4 style="color:var(--navy); margin-bottom:4px;">Practical Tips</h4>
+              <p style="color:var(--mid-grey); font-size:0.9rem;">Actionable guides: how to open a French bank account, understand your payslip, navigate the CPAM, and more.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBSCRIPTION FORM -->
+        <div style="background:var(--white); border-radius:var(--radius-lg); padding:36px; margin-top:40px; box-shadow:var(--shadow-md); border:1px solid var(--light-grey);">
+          <h3 style="margin-bottom:6px;">Subscribe — It's Free</h3>
+          <p style="color:var(--mid-grey); font-size:0.9rem; margin-bottom:28px;">Takes 30 seconds. Unsubscribe anytime. No spam — ever.</p>
+
+          <form id="newsletterForm">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label class="form-label">First Name *</label>
+                <input type="text" class="form-control" id="firstName" placeholder="John" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name *</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-control" id="subEmail" placeholder="john.smith@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Which city do you live in?</label>
+              <input type="text" class="form-control" id="subCity" placeholder="Paris, Lyon, Bordeaux, Marseille…">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">How long have you been in France?</label>
+              <select class="form-control" id="yearsInFrance">
+                <option value="">Select…</option>
+                <option>Less than 1 year</option>
+                <option>1–3 years</option>
+                <option>3–5 years</option>
+                <option>5–10 years</option>
+                <option>More than 10 years</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" style="margin-bottom:12px;">What topics interest you most? (Select all that apply)</label>
+              <div class="interests-grid" id="interestsGrid">
+                <label class="interest-tag"><input type="checkbox" value="taxes"> 💸 US & French Taxes</label>
+                <label class="interest-tag"><input type="checkbox" value="visas"> 🛂 Visas & Residency</label>
+                <label class="interest-tag"><input type="checkbox" value="banking"> 🏦 Banking & Finance</label>
+                <label class="interest-tag"><input type="checkbox" value="business"> 🏢 Business / US Expansion</label>
+                <label class="interest-tag"><input type="checkbox" value="healthcare"> 🏥 Healthcare</label>
+                <label class="interest-tag"><input type="checkbox" value="legal"> ⚖️ Legal & Admin</label>
+                <label class="interest-tag"><input type="checkbox" value="community"> 🤝 Expat Community</label>
+                <label class="interest-tag"><input type="checkbox" value="culture"> 🗼 Culture & Daily Life</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox" id="isConsultant">
+                <span>I provide consulting services to French companies (US business/market)</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox" id="privacyConsent" required>
+                <span>I agree to the <a href="#" style="color:var(--gold)">privacy policy</a> and consent to receive the newsletter *</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" id="subSubmitBtn">
+              <i class="fas fa-envelope" style="margin-right:8px"></i>Subscribe to the Newsletter
+            </button>
+          </form>
+
+          <div id="subSuccess" style="display:none; text-align:center; padding:24px 0;">
+            <div style="font-size:3rem; margin-bottom:12px;">✅</div>
+            <h3 style="color:var(--navy); margin-bottom:8px;">You're In!</h3>
+            <p style="color:var(--mid-grey);">Welcome to the AmericanInFrance community. Your first issue will arrive within the week.</p>
+            <p style="font-size:0.85rem; color:var(--mid-grey);">Are you a consultant? <a href="partners.html" style="color:var(--gold); font-weight:600;">Learn about our Partner Program →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Sample Issue + Stats -->
+      <div>
+        <div class="subscriber-count">
+          <div style="font-size:2.2rem; color:var(--gold); font-family:var(--font-serif); font-weight:700;">Join the Community</div>
+          <p style="color:rgba(255,255,255,0.7); font-size:0.88rem; margin-top:8px; margin-bottom:0;">Americans in France, Switzerland, Belgium & beyond</p>
+        </div>
+
+        <div style="margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div style="background:var(--white); border-radius:var(--radius); padding:16px; text-align:center; border:1px solid var(--light-grey);">
+            <div style="font-family:var(--font-serif); font-size:1.8rem; color:var(--navy); font-weight:700;">Bi-Weekly</div>
+            <div style="font-size:0.75rem; color:var(--mid-grey); text-transform:uppercase; letter-spacing:1px;">Frequency</div>
+          </div>
+          <div style="background:var(--white); border-radius:var(--radius); padding:16px; text-align:center; border:1px solid var(--light-grey);">
+            <div style="font-family:var(--font-serif); font-size:1.8rem; color:var(--navy); font-weight:700;">Free</div>
+            <div style="font-size:0.75rem; color:var(--mid-grey); text-transform:uppercase; letter-spacing:1px;">Always</div>
+          </div>
+        </div>
+
+        <!-- SAMPLE ISSUE -->
+        <div style="margin-top:24px;">
+          <h4 style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--mid-grey); margin-bottom:12px;">Sample Issue Preview</h4>
+          <div class="sample-issue">
+            <div class="issue-header">
+              <div class="issue-label">AmericanInFrance Newsletter — Issue #14</div>
+              <h3>IRS Raises FEIE Limit · New Préfecture Portal · AmCham Spring Event</h3>
+              <div class="issue-meta">March 2026 · Gershon Consulting</div>
+            </div>
+            <div class="issue-body">
+              <div class="issue-section">
+                <span class="is-tag">💸 Tax Alert</span>
+                <h4>IRS Raises Foreign Earned Income Exclusion to $130,000 for 2025</h4>
+                <p>The annual inflation adjustment brings the FEIE limit up from $126,500. Here's what this means for your 2025 filing and whether you still need to file Form 2555.</p>
+              </div>
+              <div class="issue-section">
+                <span class="is-tag">🛂 Visa Update</span>
+                <h4>ANEF Platform: Renewed Processing Times for Talent Passport</h4>
+                <p>The new ANEF digital portal has reduced processing times for Passeport Talent applicants. Key steps to be aware of if you're renewing in 2026.</p>
+              </div>
+              <div class="issue-section">
+                <span class="is-tag">🏢 Business</span>
+                <h4>SelectUSA Summit 2026: France Leads European Registrations</h4>
+                <p>France again tops European nations in applications for the US government's premier foreign investment event. How French SMEs are approaching US market entry.</p>
+              </div>
+              <div class="issue-section">
+                <span class="is-tag">🤝 From Gershon Consulting</span>
+                <h4>Introducing the Partner Program: Earn Commissions on US Market Referrals</h4>
+                <p>Are you an American consultant in France advising French companies? We want to talk. See how our Partner Program works.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL PROOF -->
+        <div style="background:var(--white); border-radius:var(--radius-lg); padding:24px; margin-top:24px; border:1px solid var(--light-grey);">
+          <h4 style="color:var(--navy); font-size:1rem; margin-bottom:16px;">What Readers Say</h4>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--light-grey);">
+            <div style="color:var(--gold); font-size:0.8rem; margin-bottom:6px;">★★★★★</div>
+            <p style="font-size:0.85rem; font-style:italic; color:var(--dark); margin:0;">"The tax alert about FBAR deadlines saved me from a significant penalty. This newsletter is essential reading."</p>
+            <div style="font-size:0.75rem; color:var(--mid-grey); margin-top:6px;">— Mark T., Paris · Business Consultant</div>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--light-grey);">
+            <div style="color:var(--gold); font-size:0.8rem; margin-bottom:6px;">★★★★★</div>
+            <p style="font-size:0.85rem; font-style:italic; color:var(--dark); margin:0;">"Finally, one place that covers everything a professional American in France needs to know. I share it with every client I have."</p>
+            <div style="font-size:0.75rem; color:var(--mid-grey); margin-top:6px;">— Sarah K., Lyon · US Market Advisor</div>
+          </div>
+          <div>
+            <div style="color:var(--gold); font-size:0.8rem; margin-bottom:6px;">★★★★★</div>
+            <p style="font-size:0.85rem; font-style:italic; color:var(--dark); margin:0;">"The Franco-American business coverage is something I haven't found anywhere else. Genuinely useful for my work."</p>
+            <div style="font-size:0.75rem; color:var(--mid-grey); margin-top:6px;">— David M., Bordeaux · CEO</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">American<span>In</span>France</div>
+        <p>A Gershon Consulting initiative. The definitive resource hub for Americans living and working in France.</p>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="resources.html#taxes">US & French Taxes</a></li>
+          <li><a href="resources.html#visas">Visas & Residency</a></li>
+          <li><a href="resources.html#banking">Banking</a></li>
+          <li><a href="resources.html#business">Business</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="newsletter.html">Newsletter</a></li>
+          <li><a href="partners.html">Partner Program</a></li>
+          <li><a href="resources.html#community">Expat Communities</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Gershon Consulting</h4>
+        <ul>
+          <li><a href="partners.html">US Market Entry</a></li>
+          <li><a href="partners.html">Become a Partner</a></li>
+          <li><a href="partners.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AmericanInFrance.fr — A <strong style="color:var(--gold)">Gershon Consulting</strong> Initiative.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Legal</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

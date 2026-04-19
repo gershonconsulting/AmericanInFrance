@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Hub — AmericanInFrance.fr | Gershon Consulting</title>
+  <meta name="description" content="150+ curated resources for Americans in France: taxes, visas, banking, healthcare, business, communities and more. The most comprehensive catalog on the web.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .resources-layout { display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start; }
+    .sidebar { position: sticky; top: 90px; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--light-grey); }
+    .sidebar-header { background: var(--navy); padding: 18px 20px; }
+    .sidebar-header h4 { color: var(--white); font-family: var(--font-main); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+    .sidebar-nav a { display: flex; align-items: center; gap: 10px; padding: 12px 20px; font-size: 0.875rem; color: var(--dark); border-bottom: 1px solid var(--light-grey); transition: all var(--transition); }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(201,168,76,0.08); color: var(--navy); border-left: 3px solid var(--gold); padding-left: 17px; }
+    .sidebar-nav a:last-child { border-bottom: none; }
+    .sidebar-nav a .s-icon { width: 24px; text-align: center; font-size: 1rem; }
+    .sidebar-nav a .s-count { margin-left: auto; font-size: 0.7rem; background: var(--light-grey); padding: 2px 8px; border-radius: 10px; color: var(--navy); font-weight: 700; }
+    .category-section { margin-bottom: 56px; scroll-margin-top: 90px; }
+    .category-section h2 { display: flex; align-items: center; gap: 14px; font-size: 1.5rem; padding-bottom: 14px; border-bottom: 2px solid var(--light-grey); margin-bottom: 28px; }
+    .category-section h2 .cat-emoji { font-size: 1.8rem; }
+    .category-section h2 .cat-count-badge { font-size: 0.75rem; background: rgba(201,168,76,0.15); color: #8B6914; padding: 4px 12px; border-radius: 20px; font-family: var(--font-main); font-weight: 600; }
+    .resources-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .sub-category { margin-bottom: 28px; }
+    .sub-category h4 { font-family: var(--font-main); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mid-grey); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .sub-category h4::after { content: ''; flex: 1; height: 1px; background: var(--light-grey); }
+    @media (max-width: 900px) { .resources-layout { grid-template-columns: 1fr; } .sidebar { position: static; } .resources-2col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo" style="text-decoration:none;">
+      <span class="logo-main">American<span>In</span>France</span>
+      <span class="logo-sub">A Gershon Consulting Initiative</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">Weekly Digest</a></li>
+      <li><a href="resources.html" class="active">Resource Hub</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="partners.html">Become a Partner</a></li>
+      <li><a href="partners.html" class="nav-cta">Join the Network</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--gold); display:block; margin-bottom:10px;">The Mega Catalog</span>
+    <h1>Resource Hub</h1>
+    <p>150+ curated links, organized by category — the most comprehensive guide for Americans in France, assembled from the best sources across the internet.</p>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div style="background:var(--white); padding:32px 0; border-bottom:1px solid var(--light-grey);">
+  <div class="container">
+    <div class="search-bar" style="max-width:600px; margin:0 auto;">
+      <i class="fas fa-search"></i>
+      <input type="text" id="resourceSearch" placeholder="Search resources: taxes, visas, banking, healthcare…" autocomplete="off">
+      <span id="searchCount" style="font-size:0.8rem; color:var(--mid-grey); white-space:nowrap;"></span>
+    </div>
+    <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:14px;">
+      <button class="tag tag-gold filter-btn active" data-filter="all">All Resources</button>
+      <button class="tag tag-navy filter-btn" data-filter="official">🏛️ Official</button>
+      <button class="tag filter-btn" style="background:rgba(52,152,219,0.1);color:#1a5f8a;" data-filter="business">💼 Business</button>
+      <button class="tag tag-green filter-btn" data-filter="community">🤝 Community</button>
+      <button class="tag filter-btn" style="background:rgba(231,76,60,0.1);color:#8a1a1a;" data-filter="essential">⭐ Essential</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="section">
+  <div class="container">
+    <div class="resources-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h4><i class="fas fa-list" style="margin-right:8px"></i>Categories</h4>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#taxes"><span class="s-icon">💸</span> US & French Taxes<span class="s-count">18</span></a>
+          <a href="#visas"><span class="s-icon">🛂</span> Visas & Residency<span class="s-count">12</span></a>
+          <a href="#banking"><span class="s-icon">🏦</span> Banking & Finance<span class="s-count">10</span></a>
+          <a href="#business"><span class="s-icon">🏢</span> Business & US Expansion<span class="s-count">22</span></a>
+          <a href="#franco-american"><span class="s-icon">🤝</span> Franco-American Trade<span class="s-count">16</span></a>
+          <a href="#healthcare"><span class="s-icon">🏥</span> Healthcare<span class="s-count">9</span></a>
+          <a href="#legal"><span class="s-icon">⚖️</span> Legal & Administrative<span class="s-count">11</span></a>
+          <a href="#realestate"><span class="s-icon">🏡</span> Real Estate<span class="s-count">8</span></a>
+          <a href="#education"><span class="s-icon">🎓</span> Education<span class="s-count">7</span></a>
+          <a href="#community"><span class="s-icon">👥</span> Expat Communities<span class="s-count">14</span></a>
+          <a href="#culture"><span class="s-icon">🗼</span> Culture & Daily Life<span class="s-count">6</span></a>
+          <a href="#consular"><span class="s-icon">🏛️</span> US Consular Services<span class="s-count">8</span></a>
+        </nav>
+        <div style="padding:16px 20px; background:rgba(201,168,76,0.06); border-top:1px solid var(--light-grey);">
+          <p style="font-size:0.78rem; color:var(--mid-grey); margin:0; line-height:1.6;">Can't find what you need? <a href="newsletter.html" style="color:var(--gold); font-weight:600;">Subscribe to the newsletter</a> for weekly updates.</p>
+        </div>
+      </aside>
+
+      <!-- RESOURCE CONTENT -->
+      <main id="resourceContent">
+
+        <!-- ===================== TAXES ===================== -->
+        <section class="category-section" id="taxes">
+          <h2><span class="cat-emoji">💸</span> US & French Taxes <span class="cat-count-badge">18 Resources</span></h2>
+
+          <div class="alert alert-gold">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Important:</strong> As an American abroad, you must still file US taxes every year, regardless of where you live. The US taxes on citizenship, not residence.
+          </div>
+
+          <div class="sub-category">
+            <h4>Official US Tax Sources</h4>
+            <div class="resources-2col">
+              <a href="https://www.irs.gov/individuals/international-taxpayers" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="irs international taxpayers fbar fatca">
+                <div class="rl-icon">🏛️</div>
+                <div class="rl-body"><h4>IRS — International Taxpayers Portal</h4><p>FBAR filing, FATCA, foreign tax credits, Form 2555</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.irs.gov/forms-pubs/about-form-2555" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="form 2555 foreign earned income exclusion">
+                <div class="rl-icon">📋</div>
+                <div class="rl-body"><h4>IRS Form 2555 — Foreign Earned Income</h4><p>Foreign earned income exclusion (up to $126,500 in 2024)</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.fincen.gov/report-foreign-bank-and-financial-accounts" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="fbar foreign bank accounts fincen">
+                <div class="rl-icon">🏦</div>
+                <div class="rl-body"><h4>FinCEN — FBAR Report</h4><p>Report Foreign Bank & Financial Accounts — required if assets exceed $10,000</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.irs.gov/businesses/corporations/foreign-account-tax-compliance-act-fatca" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="fatca foreign account tax compliance">
+                <div class="rl-icon">📑</div>
+                <div class="rl-body"><h4>IRS — FATCA Overview</h4><p>Foreign Account Tax Compliance Act — Form 8938 requirements</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-category">
+            <h4>France–US Tax Treaty & French Tax</h4>
+            <div class="resources-2col">
+              <a href="https://www.impots.gouv.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="impots.gouv french tax authority declaration">
+                <div class="rl-icon">🇫🇷</div>
+                <div class="rl-body"><h4>Impôts.gouv.fr — Direction Générale des Finances Publiques</h4><p>French tax authority — income declaration, tax residency rules</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.irs.gov/pub/irs-trty/france.pdf" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="tax treaty france united states double taxation">
+                <div class="rl-icon">📜</div>
+                <div class="rl-body"><h4>IRS — US–France Tax Treaty (PDF)</h4><p>Full text of the bilateral tax treaty — avoiding double taxation</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.taxfairnessabroad.org" target="_blank" rel="noopener" class="resource-link" data-category="community" data-keywords="tax fairness americans abroad advocacy">
+                <div class="rl-icon">✊</div>
+                <div class="rl-body"><h4>Tax Fairness for Americans Abroad</h4><p>Advocacy group pushing for residence-based taxation reform</p></div>
+                <span class="rl-badge community">Advocacy</span>
+              </a>
+              <a href="https://americansabroad.org/taxes/" target="_blank" rel="noopener" class="resource-link" data-category="community" data-keywords="americans abroad taxes guide">
+                <div class="rl-icon">🌍</div>
+                <div class="rl-body"><h4>Americans Abroad — Tax Guide</h4><p>AARO's comprehensive tax resource guide for US expats</p></div>
+                <span class="rl-badge community">Guide</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-category">
+            <h4>Expat Tax Filing Services</h4>
+            <div class="resources-2col">
+              <a href="https://www.hrblock.com/expat-tax-preparation/resource-center/country/france/" target="_blank" rel="noopener" class="resource-link" data-keywords="hr block expat tax france filing">
+                <div class="rl-icon">🧮</div>
+                <div class="rl-body"><h4>H&R Block Expat — France Guide</h4><p>Detailed US expat tax guide specific to France</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.myexpattaxes.com" target="_blank" rel="noopener" class="resource-link" data-keywords="my expat taxes online filing service">
+                <div class="rl-icon">💻</div>
+                <div class="rl-body"><h4>MyExpatTaxes.com</h4><p>Online US expat tax filing service — straightforward and affordable</p></div>
+                <span class="rl-badge community">Service</span>
+              </a>
+              <a href="https://www.expatustax.com" target="_blank" rel="noopener" class="resource-link" data-keywords="expat us tax fbar fatca guide">
+                <div class="rl-icon">📊</div>
+                <div class="rl-body"><h4>Expat US Tax — expatustax.com</h4><p>FBAR vs FATCA guide and US expat tax filing support</p></div>
+                <span class="rl-badge community">Service</span>
+              </a>
+              <a href="https://www.taxesforexpats.com" target="_blank" rel="noopener" class="resource-link" data-keywords="taxes for expats cpa us abroad">
+                <div class="rl-icon">🗃️</div>
+                <div class="rl-body"><h4>Taxes For Expats — taxesforexpats.com</h4><p>CPA firm specializing in US taxes for American expats in France</p></div>
+                <span class="rl-badge community">Service</span>
+              </a>
+              <a href="https://1040abroad.com" target="_blank" rel="noopener" class="resource-link" data-keywords="1040 abroad expat tax FATCA reporting">
+                <div class="rl-icon">📁</div>
+                <div class="rl-body"><h4>1040 Abroad</h4><p>Specialized US expat tax service, FATCA reporting, Form 8938</p></div>
+                <span class="rl-badge community">Service</span>
+              </a>
+              <a href="https://www.expattaxonline.com" target="_blank" rel="noopener" class="resource-link" data-keywords="expat tax online filing guide 2025">
+                <div class="rl-icon">🌐</div>
+                <div class="rl-body"><h4>Expat Tax Online</h4><p>2025 filing guides, FBAR penalties, complete expat tax handbook</p></div>
+                <span class="rl-badge community">Guide</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== VISAS ===================== -->
+        <section class="category-section" id="visas">
+          <h2><span class="cat-emoji">🛂</span> Visas & Residency <span class="cat-count-badge">12 Resources</span></h2>
+
+          <div class="sub-category">
+            <h4>French Official Sources</h4>
+            <div class="resources-2col">
+              <a href="https://france-visas.gouv.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="france visa application long stay">
+                <div class="rl-icon">🛂</div>
+                <div class="rl-body"><h4>France-Visas.gouv.fr</h4><p>Official French visa application portal — all visa types including long-stay (VLS-TS)</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.service-public.fr/particuliers/vosdroits/N19811" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="carte de sejour titre de sejour residency permit">
+                <div class="rl-icon">🪪</div>
+                <div class="rl-body"><h4>Service-Public.fr — Carte de Séjour</h4><p>French residency permits — how to apply, renew, types available</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.immigration.interieur.gouv.fr/Info-ressources/Etrangers-en-France/Demander-un-titre-de-sejour/Passeport-Talent" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="talent passport highly skilled worker visa france">
+                <div class="rl-icon">🌟</div>
+                <div class="rl-body"><h4>Passeport Talent — Highly Skilled Visa</h4><p>The French "Talent Passport" visa for highly skilled workers & entrepreneurs</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://administration-etrangers-en-france.interieur.gouv.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="ANEF online prefecture services foreigners france">
+                <div class="rl-icon">🖥️</div>
+                <div class="rl-body"><h4>ANEF — Administration des Étrangers en France</h4><p>Online platform to manage your residency permit in France</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-category">
+            <h4>Expat Guides & Visa Help</h4>
+            <div class="resources-2col">
+              <a href="https://www.expatica.com/fr/moving-to-france/visas-and-permits/france-work-visa-100624/" target="_blank" rel="noopener" class="resource-link" data-keywords="expatica france work visa guide american">
+                <div class="rl-icon">📖</div>
+                <div class="rl-body"><h4>Expatica — France Work Visa Guide</h4><p>Comprehensive guide to French work visas for Americans</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.angloinfo.com/how-to/france/moving/residency" target="_blank" rel="noopener" class="resource-link" data-keywords="angloinfo france residency moving guide">
+                <div class="rl-icon">📗</div>
+                <div class="rl-body"><h4>AngloInfo France — Residency Guide</h4><p>Step-by-step guide to establishing French residency as an Anglophone</p></div>
+                <span class="rl-badge community">Guide</span>
+              </a>
+              <a href="https://www.frenchentree.com/living-in-france/moving-to-france/us-citizens-moving-france/" target="_blank" rel="noopener" class="resource-link" data-keywords="french entree us citizens moving france">
+                <div class="rl-icon">🏠</div>
+                <div class="rl-body"><h4>FrenchEntrée — US Citizens Moving to France</h4><p>Practical moving guide specifically for Americans relocating to France</p></div>
+                <span class="rl-badge community">Guide</span>
+              </a>
+              <a href="https://visaguide.world/europe/france-visa/american-citizens/" target="_blank" rel="noopener" class="resource-link" data-keywords="visa guide france american citizens requirements">
+                <div class="rl-icon">🔍</div>
+                <div class="rl-body"><h4>VisaGuide World — Americans to France</h4><p>Up-to-date France visa requirements specifically for US passport holders</p></div>
+                <span class="rl-badge community">Guide</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== BANKING ===================== -->
+        <section class="category-section" id="banking">
+          <h2><span class="cat-emoji">🏦</span> Banking & Finance <span class="cat-count-badge">10 Resources</span></h2>
+
+          <div class="alert alert-gold">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>FATCA Challenge:</strong> Many French banks refuse to open accounts for Americans due to FATCA reporting requirements. See resources below for solutions.
+          </div>
+
+          <div class="sub-category">
+            <h4>French Banking for Americans</h4>
+            <div class="resources-2col">
+              <a href="https://www.labanquepostale.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="la banque postale post office bank france account">
+                <div class="rl-icon">🏦</div>
+                <div class="rl-body"><h4>La Banque Postale</h4><p>Most accessible French bank — legally required to open an account for any EU/France resident</p></div>
+                <span class="rl-badge essential">Best Option</span>
+              </a>
+              <a href="https://www.bnpparibas.fr" target="_blank" rel="noopener" class="resource-link" data-keywords="bnp paribas american bank account france">
+                <div class="rl-icon">🏢</div>
+                <div class="rl-body"><h4>BNP Paribas</h4><p>International banking, US-experienced — will open accounts for FATCA-compliant Americans</p></div>
+                <span class="rl-badge community">Bank</span>
+              </a>
+              <a href="https://www.n26.com/en-fr" target="_blank" rel="noopener" class="resource-link" data-keywords="n26 digital bank france american">
+                <div class="rl-icon">📱</div>
+                <div class="rl-body"><h4>N26 — Digital Bank France</h4><p>German digital bank operating in France — sometimes available to Americans</p></div>
+                <span class="rl-badge community">Neobank</span>
+              </a>
+              <a href="https://www.wise.com" target="_blank" rel="noopener" class="resource-link" data-keywords="wise transferwise international transfers expat">
+                <div class="rl-icon">💸</div>
+                <div class="rl-body"><h4>Wise (TransferWise)</h4><p>Multi-currency accounts, US–France transfers at real exchange rates</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.schwab.com/international" target="_blank" rel="noopener" class="resource-link" data-keywords="charles schwab international expat american bank">
+                <div class="rl-icon">🇺🇸</div>
+                <div class="rl-body"><h4>Charles Schwab International</h4><p>Best US bank for expats — no ATM fees worldwide, FDIC insured</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.currencyfair.com" target="_blank" rel="noopener" class="resource-link" data-keywords="currency fair transfer money france usa">
+                <div class="rl-icon">🔄</div>
+                <div class="rl-body"><h4>CurrencyFair</h4><p>Peer-to-peer currency exchange — competitive EUR/USD rates for expats</p></div>
+                <span class="rl-badge community">Service</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== BUSINESS & US EXPANSION ===================== -->
+        <section class="category-section" id="business">
+          <h2><span class="cat-emoji">🏢</span> Business & US Market Expansion <span class="cat-count-badge">22 Resources</span></h2>
+
+          <div class="sub-category">
+            <h4>Setting Up Business in France</h4>
+            <div class="resources-2col">
+              <a href="https://www.inpi.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="inpi register company france auto entrepreneur">
+                <div class="rl-icon">📋</div>
+                <div class="rl-body"><h4>INPI — Registering a Business in France</h4><p>National Institute of Industrial Property — company registration portal</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.guichet-entreprises.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="guichet entreprises one stop shop business france">
+                <div class="rl-icon">🏪</div>
+                <div class="rl-body"><h4>Guichet-Entreprises.fr</h4><p>One-stop shop for creating and managing a business in France</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.autoentrepreneur.urssaf.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="auto entrepreneur micro entrepreneur urssaf">
+                <div class="rl-icon">👤</div>
+                <div class="rl-body"><h4>Auto-Entrepreneur — URSSAF</h4><p>Register as a freelancer/micro-entrepreneur — simplest French business structure</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.cfe.urssaf.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="CFE business registration french social security">
+                <div class="rl-icon">🔐</div>
+                <div class="rl-body"><h4>URSSAF — Business Social Contributions</h4><p>French social security contributions for self-employed and businesses</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-category">
+            <h4>US Market Entry for French Companies</h4>
+            <div class="resources-2col">
+              <a href="https://www.businessfrance.fr/en/you-are-a-foreign-investor" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="business france US investment market entry">
+                <div class="rl-icon">🌎</div>
+                <div class="rl-body"><h4>Business France — US Market Entry</h4><p>French government support for companies expanding to the US</p></div>
+                <span class="rl-badge business">Essential</span>
+              </a>
+              <a href="https://www.bpifrance.fr/A-la-une/Actualites/Export-international" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="bpifrance export international expansion USA">
+                <div class="rl-icon">📈</div>
+                <div class="rl-body"><h4>BPI France — International Export</h4><p>Financing and support for French SMEs going international — including the US</p></div>
+                <span class="rl-badge business">Business</span>
+              </a>
+              <a href="https://www.selectusa.gov" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="selectusa invest in america foreign companies">
+                <div class="rl-icon">🇺🇸</div>
+                <div class="rl-body"><h4>SelectUSA.gov — Invest in America</h4><p>US government program facilitating foreign investment in the United States</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.irs.gov/businesses/small-businesses-self-employed/foreign-company-doing-business-in-the-us" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="foreign company US business IRS tax setup">
+                <div class="rl-icon">💼</div>
+                <div class="rl-body"><h4>IRS — Foreign Companies in the US</h4><p>Tax obligations when a French company sets up US operations</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.sba.gov" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="sba small business administration US company setup">
+                <div class="rl-icon">🏛️</div>
+                <div class="rl-body"><h4>US Small Business Administration (SBA)</h4><p>Starting a business in the US — entity types, compliance, financing</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.usitc.gov" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="USITC trade commission france us imports exports">
+                <div class="rl-icon">⚖️</div>
+                <div class="rl-body"><h4>US International Trade Commission</h4><p>Trade data, tariffs, import regulations between France and the US</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-category">
+            <h4>Gershon Consulting Services</h4>
+            <div class="resources-2col">
+              <a href="partners.html" class="resource-link" style="background:linear-gradient(135deg, rgba(201,168,76,0.08), rgba(10,31,92,0.05)); border-color:rgba(201,168,76,0.3);" data-keywords="gershon consulting us market entry partner program">
+                <div class="rl-icon">⭐</div>
+                <div class="rl-body"><h4>Gershon Consulting — US Market Entry</h4><p>Comprehensive US market entry strategy, go-to-market, and sales infrastructure for French companies</p></div>
+                <span class="rl-badge essential">Our Services</span>
+              </a>
+              <a href="partners.html" class="resource-link" style="background:linear-gradient(135deg, rgba(201,168,76,0.08), rgba(10,31,92,0.05)); border-color:rgba(201,168,76,0.3);" data-keywords="gershon partner consultant reseller program">
+                <div class="rl-icon">🤝</div>
+                <div class="rl-body"><h4>Gershon Partner Program</h4><p>American consultants in France: partner with us to extend your offer & earn commissions</p></div>
+                <span class="rl-badge essential">Join Now</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== FRANCO-AMERICAN TRADE ===================== -->
+        <section class="category-section" id="franco-american">
+          <h2><span class="cat-emoji">🤝</span> Franco-American Trade & Business <span class="cat-count-badge">16 Resources</span></h2>
+
+          <div class="sub-category">
+            <h4>Bilateral Chambers of Commerce</h4>
+            <div class="resources-2col">
+              <a href="https://amchamfrance.org" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="amcham france american chamber commerce paris">
+                <div class="rl-icon">🏛️</div>
+                <div class="rl-body"><h4>AmCham France — amchamfrance.org</h4><p>American Chamber of Commerce in France — 130 years of transatlantic business</p></div>
+                <span class="rl-badge essential">Essential</span>
+              </a>
+              <a href="https://www.facc-ny.com" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="facc french american chamber commerce new york">
+                <div class="rl-icon">🗽</div>
+                <div class="rl-body"><h4>FACC New York — facc-ny.com</h4><p>French-American Chamber of Commerce New York — key transatlantic network</p></div>
+                <span class="rl-badge business">Business</span>
+              </a>
+              <a href="https://www.faccpnw.org" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="facc pacific northwest seattle french american">
+                <div class="rl-icon">🌲</div>
+                <div class="rl-body"><h4>FACC Pacific Northwest — faccpnw.org</h4><p>French-American Chamber of Commerce — Seattle, Portland & Pacific Northwest</p></div>
+                <span class="rl-badge business">Business</span>
+              </a>
+              <a href="https://www.faccatlanta.org" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="facc atlanta french american chamber southeast us">
+                <div class="rl-icon">🍑</div>
+                <div class="rl-body"><h4>FACC Atlanta</h4><p>French-American Chamber of Commerce — covering the Southeast US market</p></div>
+                <span class="rl-badge business">Business</span>
+              </a>
+              <a href="https://faccchicago.com" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="facc chicago midwest french american chamber">
+                <div class="rl-icon">🏙️</div>
+                <div class="rl-body"><h4>FACC Chicago</h4><p>French-American Chamber of Commerce — Midwest US market</p></div>
+                <span class="rl-badge business">Business</span>
+              </a>
+              <a href="https://www.ccifrance-international.org" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="CCI France International chambers commerce worldwide">
+                <div class="rl-icon">🌐</div>
+                <div class="rl-body"><h4>CCI France International</h4><p>Network of French chambers of commerce worldwide including the Americas</p></div>
+                <span class="rl-badge business">Network</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-category">
+            <h4>French Government Trade Offices in the US</h4>
+            <div class="resources-2col">
+              <a href="https://www.tresor.economie.gouv.fr/Institutionnel/Implantations-a-l-etranger" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="service économique ambassade france usa trade">
+                <div class="rl-icon">💼</div>
+                <div class="rl-body"><h4>Service Économique de l'Ambassade de France</h4><p>French Treasury economic missions in the US — trade intelligence & support</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://www.franceintheusa.org" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="french embassy us france business summit events">
+                <div class="rl-icon">🇫🇷</div>
+                <div class="rl-body"><h4>France in the United States</h4><p>Official French Embassy resource for Franco-American business summits & events</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://usa.ambafrance.org" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="french embassy washington usa economic section">
+                <div class="rl-icon">🏛️</div>
+                <div class="rl-body"><h4>French Embassy Washington DC</h4><p>Economic section — bilateral trade, investment climate, business support</p></div>
+                <span class="rl-badge official">Official</span>
+              </a>
+              <a href="https://station-f.com" target="_blank" rel="noopener" class="resource-link" data-category="business" data-keywords="station f paris startup french tech ecosystem">
+                <div class="rl-icon">🚀</div>
+                <div class="rl-body"><h4>Station F — Paris Startup Campus</h4><p>World's largest startup campus — connecting French innovators to global markets</p></div>
+                <span class="rl-badge business">Startup</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== HEALTHCARE ===================== -->
+        <section class="category-section" id="healthcare">
+          <h2><span class="cat-emoji">🏥</span> Healthcare & Social Security <span class="cat-count-badge">9 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://www.ameli.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="ameli securite sociale health insurance france enrollment">
+              <div class="rl-icon">💊</div>
+              <div class="rl-body"><h4>Ameli.fr — Assurance Maladie</h4><p>French national health insurance — enrollment, carte vitale, reimbursements</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.ssa.gov/international/France.html" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="social security administration france totalization agreement">
+              <div class="rl-icon">🛡️</div>
+              <div class="rl-body"><h4>SSA — US–France Totalization Agreement</h4><p>How the US–France social security agreement prevents double contributions</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.medicare.gov/basics/get-started-with-medicare/medicare-basics/what-is-medicare" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="medicare abroad expat france coverage">
+              <div class="rl-icon">🏥</div>
+              <div class="rl-body"><h4>Medicare.gov — Coverage Abroad</h4><p>Understanding Medicare while living abroad — what's covered internationally</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.cigna.com/individuals-families/insurance-for-individuals/expat-insurance" target="_blank" rel="noopener" class="resource-link" data-keywords="cigna expat health insurance international coverage">
+              <div class="rl-icon">🌍</div>
+              <div class="rl-body"><h4>Cigna Global — Expat Health Insurance</h4><p>International health insurance plans for Americans living in France</p></div>
+              <span class="rl-badge community">Insurance</span>
+            </a>
+            <a href="https://www.aetna.com/individuals-families/international-health.html" target="_blank" rel="noopener" class="resource-link" data-keywords="aetna international expat health insurance france">
+              <div class="rl-icon">💙</div>
+              <div class="rl-body"><h4>Aetna International — Expat Plans</h4><p>US-based insurer with international coverage for expats in France</p></div>
+              <span class="rl-badge community">Insurance</span>
+            </a>
+            <a href="https://www.mgen.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="MGEN mutuelle complementaire sante france">
+              <div class="rl-icon">🩺</div>
+              <div class="rl-body"><h4>MGEN — French Mutuelle (Complementary Insurance)</h4><p>One of France's top complementary health insurance providers</p></div>
+              <span class="rl-badge official">French</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ===================== LEGAL ===================== -->
+        <section class="category-section" id="legal">
+          <h2><span class="cat-emoji">⚖️</span> Legal & Administrative <span class="cat-count-badge">11 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://www.service-public.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="service public france government procedures administrative">
+              <div class="rl-icon">🏛️</div>
+              <div class="rl-body"><h4>Service-Public.fr</h4><p>The official French government portal for all administrative procedures</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.notaires.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="notaire france real estate estate planning legal">
+              <div class="rl-icon">📜</div>
+              <div class="rl-body"><h4>Notaires de France — notaires.fr</h4><p>Official notary directory — real estate, estates, wills, family law in France</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.legifrance.gouv.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="legifrance french law codes regulations official text">
+              <div class="rl-icon">📕</div>
+              <div class="rl-body"><h4>Légifrance — Official French Law</h4><p>Complete database of French laws, regulations and official texts</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://travel.state.gov/content/travel/en/legal/travel-legal-considerations/us-citizenship/Renunciation-US-Nationality-Abroad.html" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="renunciation us citizenship abroad state department">
+              <div class="rl-icon">🇺🇸</div>
+              <div class="rl-body"><h4>State Dept — Renunciation of US Citizenship</h4><p>Official process if considering renouncing US citizenship while living abroad</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.expatica.com/fr/finance/taxes/french-inheritance-law-101949/" target="_blank" rel="noopener" class="resource-link" data-keywords="french inheritance law succession expat estate planning">
+              <div class="rl-icon">🏛️</div>
+              <div class="rl-body"><h4>Expatica — French Inheritance Law Guide</h4><p>Understanding French succession law as an American expat — essential for planning</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.frenchentree.com/legal/dual-nationality-france-usa/" target="_blank" rel="noopener" class="resource-link" data-keywords="dual nationality citizenship france usa american">
+              <div class="rl-icon">🪪</div>
+              <div class="rl-body"><h4>FrenchEntrée — Dual Nationality Guide</h4><p>Everything about holding both French and American citizenship</p></div>
+              <span class="rl-badge community">Guide</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ===================== REAL ESTATE ===================== -->
+        <section class="category-section" id="realestate">
+          <h2><span class="cat-emoji">🏡</span> Real Estate <span class="cat-count-badge">8 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://www.seloger.com" target="_blank" rel="noopener" class="resource-link" data-keywords="seloger france real estate property listings buy rent">
+              <div class="rl-icon">🏠</div>
+              <div class="rl-body"><h4>SeLoger.com — France's Top Property Portal</h4><p>Buy and rent properties across all of France — the primary listing platform</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.leboncoin.fr/recherche?category=9" target="_blank" rel="noopener" class="resource-link" data-keywords="leboncoin rentals apartments france classifieds">
+              <div class="rl-icon">🔑</div>
+              <div class="rl-body"><h4>Le Bon Coin — Real Estate</h4><p>France's largest classifieds site — excellent for direct-owner rentals</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.frenchentree.com/property/buying-property-in-france/" target="_blank" rel="noopener" class="resource-link" data-keywords="buying property france guide foreigner american">
+              <div class="rl-icon">📋</div>
+              <div class="rl-body"><h4>FrenchEntrée — Buying Guide</h4><p>Complete guide to purchasing property in France as a foreigner/American</p></div>
+              <span class="rl-badge community">Guide</span>
+            </a>
+            <a href="https://www.notaires.fr/en/real-estate/buying-or-renting-real-estate-france" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="notaires real estate buying renting france english">
+              <div class="rl-icon">📜</div>
+              <div class="rl-body"><h4>Notaires — Buying/Renting in France (EN)</h4><p>Official guide in English from the French notary body on property transactions</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.connexionfrance.com/article/french-news/property/what-us-citizens-need-to-know-before-buying-property-in-france" target="_blank" rel="noopener" class="resource-link" data-keywords="connexion france US citizens buying property">
+              <div class="rl-icon">🌐</div>
+              <div class="rl-body"><h4>The Connexion — US Citizens Buying in France</h4><p>What American buyers need to know — tax implications, process, tips</p></div>
+              <span class="rl-badge community">Guide</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ===================== EDUCATION ===================== -->
+        <section class="category-section" id="education">
+          <h2><span class="cat-emoji">🎓</span> Education & Schools <span class="cat-count-badge">7 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://www.aefe.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="AEFE french schools abroad network education">
+              <div class="rl-icon">🏫</div>
+              <div class="rl-body"><h4>AEFE — Agence pour l'Enseignement Français à l'Étranger</h4><p>Network of French schools abroad — for context on bilingual education choices</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.aisparis.com" target="_blank" rel="noopener" class="resource-link" data-keywords="american school paris AIS private international education">
+              <div class="rl-icon">🎒</div>
+              <div class="rl-body"><h4>American School of Paris (ASP)</h4><p>K-12 American curriculum in Paris — IB diploma, US college prep</p></div>
+              <span class="rl-badge community">School</span>
+            </a>
+            <a href="https://www.marymountparis.com" target="_blank" rel="noopener" class="resource-link" data-keywords="marymount paris american school catholic k-12">
+              <div class="rl-icon">⛪</div>
+              <div class="rl-body"><h4>Marymount School of Paris</h4><p>American Catholic K-12 school in Paris with US curriculum</p></div>
+              <span class="rl-badge community">School</span>
+            </a>
+            <a href="https://www.internationalschoolsdb.com/country/France" target="_blank" rel="noopener" class="resource-link" data-keywords="international schools france directory database english">
+              <div class="rl-icon">🌍</div>
+              <div class="rl-body"><h4>International Schools Database — France</h4><p>Complete directory of international schools across France by region</p></div>
+              <span class="rl-badge community">Directory</span>
+            </a>
+            <a href="https://www.campusfrance.org" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="campus france higher education university study">
+              <div class="rl-icon">🎓</div>
+              <div class="rl-body"><h4>Campus France</h4><p>French agency for higher education — studying in France or sending children to French university</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ===================== COMMUNITY ===================== -->
+        <section class="category-section" id="community">
+          <h2><span class="cat-emoji">👥</span> Expat Communities & Networks <span class="cat-count-badge">14 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://www.americansinparis.org" target="_blank" rel="noopener" class="resource-link" data-category="community" data-keywords="americans in paris association community nonprofit">
+              <div class="rl-icon">🗼</div>
+              <div class="rl-body"><h4>Americans in Paris — americansinparis.org</h4><p>Non-profit association — events, resources, support for Americans in the Paris region</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.aaro.org" target="_blank" rel="noopener" class="resource-link" data-category="community" data-keywords="AARO american abroad organization advocacy voting">
+              <div class="rl-icon">🌍</div>
+              <div class="rl-body"><h4>AARO — Association of Americans Resident Overseas</h4><p>Paris-based association advocating for Americans abroad since 1973</p></div>
+              <span class="rl-badge community">Association</span>
+            </a>
+            <a href="https://www.democrats-abroad.org/france" target="_blank" rel="noopener" class="resource-link" data-category="community" data-keywords="democrats abroad france voting political community">
+              <div class="rl-icon">🗳️</div>
+              <div class="rl-body"><h4>Democrats Abroad France</h4><p>Active US voter registration and political community for Americans in France</p></div>
+              <span class="rl-badge community">Political</span>
+            </a>
+            <a href="https://www.republicansabroad.org" target="_blank" rel="noopener" class="resource-link" data-category="community" data-keywords="republicans abroad france voting community organization">
+              <div class="rl-icon">🗳️</div>
+              <div class="rl-body"><h4>Republicans Abroad France</h4><p>Republican party organization for Americans living in France</p></div>
+              <span class="rl-badge community">Political</span>
+            </a>
+            <a href="https://www.internations.org/paris-expats" target="_blank" rel="noopener" class="resource-link" data-keywords="internations paris expat community networking events">
+              <div class="rl-icon">🌐</div>
+              <div class="rl-body"><h4>InterNations Paris</h4><p>The world's largest expat community — active Paris chapter with regular events</p></div>
+              <span class="rl-badge community">Network</span>
+            </a>
+            <a href="https://www.meetup.com/topics/american-expat/fr/75/paris/" target="_blank" rel="noopener" class="resource-link" data-keywords="meetup american expat paris groups events networking">
+              <div class="rl-icon">📅</div>
+              <div class="rl-body"><h4>Meetup — American Expats Paris Groups</h4><p>Find local American expat meetup groups across Paris and French cities</p></div>
+              <span class="rl-badge community">Events</span>
+            </a>
+            <a href="https://www.fabexpat.com/living-in-france/where-are-the-american-expats-in-france/" target="_blank" rel="noopener" class="resource-link" data-keywords="fab expat american communities france cities where">
+              <div class="rl-icon">📍</div>
+              <div class="rl-body"><h4>FabExpat — Where Are American Expats in France</h4><p>Map and breakdown of where American expat communities are concentrated in France</p></div>
+              <span class="rl-badge community">Guide</span>
+            </a>
+            <a href="https://www.angloinfo.com/france" target="_blank" rel="noopener" class="resource-link" data-keywords="angloinfo france english speaking expat community guide">
+              <div class="rl-icon">📖</div>
+              <div class="rl-body"><h4>AngloInfo France</h4><p>English-language community network and guide covering all of France</p></div>
+              <span class="rl-badge community">Community</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ===================== CULTURE ===================== -->
+        <section class="category-section" id="culture">
+          <h2><span class="cat-emoji">🗼</span> Culture & Daily Life <span class="cat-count-badge">6 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://www.connexionfrance.com" target="_blank" rel="noopener" class="resource-link" data-keywords="connexion france english newspaper expat news lifestyle">
+              <div class="rl-icon">📰</div>
+              <div class="rl-body"><h4>The Connexion — English-Language French News</h4><p>The leading English-language newspaper for expats in France — practical news & guides</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://www.thelocal.fr" target="_blank" rel="noopener" class="resource-link" data-keywords="the local france english news expat living">
+              <div class="rl-icon">📱</div>
+              <div class="rl-body"><h4>The Local France — thelocal.fr</h4><p>English-language news and practical guides for foreigners living in France</p></div>
+              <span class="rl-badge community">News</span>
+            </a>
+            <a href="https://www.mesallocs.fr" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="CAF allocations family benefits france">
+              <div class="rl-icon">👶</div>
+              <div class="rl-body"><h4>CAF — Family Benefits (Allocations Familiales)</h4><p>French family allowances, housing benefits, childcare aid — what Americans can claim</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.fusac.fr" target="_blank" rel="noopener" class="resource-link" data-keywords="fusac paris anglophone classifieds jobs housing community">
+              <div class="rl-icon">📋</div>
+              <div class="rl-body"><h4>FUSAC — France USA Contacts</h4><p>Classifieds for the English-speaking community in Paris: jobs, housing, services</p></div>
+              <span class="rl-badge community">Classifieds</span>
+            </a>
+            <a href="https://feelgoodfrench.com/best-blogs-for-by-american-expats-in-france/" target="_blank" rel="noopener" class="resource-link" data-keywords="american blogs expats france writing community">
+              <div class="rl-icon">✍️</div>
+              <div class="rl-body"><h4>Feel Good French — Best American Expat Blogs</h4><p>Curated list of the best blogs written by Americans living in France</p></div>
+              <span class="rl-badge community">Blogs</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ===================== CONSULAR ===================== -->
+        <section class="category-section" id="consular">
+          <h2><span class="cat-emoji">🏛️</span> US Consular Services in France <span class="cat-count-badge">8 Resources</span></h2>
+
+          <div class="resources-2col">
+            <a href="https://fr.usembassy.gov/services-for-us-citizens/" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="us embassy paris american citizen services consular">
+              <div class="rl-icon">🏛️</div>
+              <div class="rl-body"><h4>US Embassy Paris — American Citizen Services</h4><p>Passports, notarial services, emergency assistance, citizen registrations (STEP)</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://step.state.gov" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="STEP smart traveler enrollment program state department">
+              <div class="rl-icon">📧</div>
+              <div class="rl-body"><h4>STEP — Smart Traveler Enrollment Program</h4><p>Register your stay in France with the US Embassy — essential for emergency alerts</p></div>
+              <span class="rl-badge essential">Essential</span>
+            </a>
+            <a href="https://travel.state.gov/content/travel/en/passports/need-passport/renew.html" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="passport renewal abroad us citizens france">
+              <div class="rl-icon">🛂</div>
+              <div class="rl-body"><h4>State Department — Passport Renewal Abroad</h4><p>How to renew your US passport while living in France</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://www.fvap.gov/eo/overview/materials/forms" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="FVAP absentee vote overseas americans federal fpca">
+              <div class="rl-icon">🗳️</div>
+              <div class="rl-body"><h4>FVAP — Vote Absentee from France</h4><p>Federal Post Card Application — register to vote and request absentee ballot</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://fr.usembassy.gov/wp-content/uploads/sites/50/local-us-lawyers-in-france.pdf" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="us lawyers france legal help embassy directory">
+              <div class="rl-icon">⚖️</div>
+              <div class="rl-body"><h4>US Embassy — US Lawyers in France (PDF)</h4><p>Embassy-maintained directory of US-trained attorneys practicing in France</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+            <a href="https://fr.usembassy.gov/notarial-services/" target="_blank" rel="noopener" class="resource-link" data-category="official" data-keywords="notarial services us embassy paris apostille documents">
+              <div class="rl-icon">📋</div>
+              <div class="rl-body"><h4>US Embassy — Notarial Services</h4><p>Authentication of US documents, apostilles, affidavits in France</p></div>
+              <span class="rl-badge official">Official</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div style="background:linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius:var(--radius-lg); padding:40px; text-align:center; margin-top:40px;">
+          <h3 style="color:var(--gold); margin-bottom:12px;">Are You an American Consultant in France?</h3>
+          <p style="color:rgba(255,255,255,0.8); margin-bottom:24px; max-width:540px; margin-left:auto; margin-right:auto;">
+            Do you advise French companies on US market expansion? Partner with Gershon Consulting and add world-class US market entry services to your offering.
+          </p>
+          <a href="partners.html" class="btn btn-primary btn-lg">Join the Partner Network →</a>
+        </div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">American<span>In</span>France</div>
+        <p>A Gershon Consulting initiative. The definitive resource hub for Americans living and working in France.</p>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#taxes">US & French Taxes</a></li>
+          <li><a href="#visas">Visas & Residency</a></li>
+          <li><a href="#banking">Banking</a></li>
+          <li><a href="#business">Business</a></li>
+          <li><a href="#healthcare">Healthcare</a></li>
+          <li><a href="#community">Communities</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More Topics</h4>
+        <ul>
+          <li><a href="#franco-american">Franco-American Trade</a></li>
+          <li><a href="#legal">Legal & Admin</a></li>
+          <li><a href="#realestate">Real Estate</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#culture">Daily Life</a></li>
+          <li><a href="#consular">US Consular</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Gershon Consulting</h4>
+        <ul>
+          <li><a href="partners.html">Partner Program</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AmericanInFrance.fr — A <strong style="color:var(--gold)">Gershon Consulting</strong> Initiative.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Legal</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
