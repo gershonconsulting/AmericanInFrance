@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Program — AmericanInFrance.fr | Gershon Consulting</title>
+  <meta name="description" content="Join the Gershon Consulting Partner Program. Are you an American consultant in France advising French companies on US market expansion? Let's build together.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .partner-layout { display: grid; grid-template-columns: 1fr 400px; gap: 48px; align-items: start; }
+    .gershon-services { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .gs-card { background: var(--white); border: 1px solid var(--light-grey); border-radius: var(--radius); padding: 20px; transition: all var(--transition); }
+    .gs-card:hover { border-color: var(--gold); box-shadow: var(--shadow-sm); }
+    .gs-card .gs-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .gs-card h4 { font-size: 0.92rem; color: var(--navy); margin-bottom: 6px; }
+    .gs-card p { font-size: 0.82rem; color: var(--mid-grey); margin: 0; }
+    .faq-item { border-bottom: 1px solid var(--light-grey); }
+    .faq-question { padding: 18px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+    .faq-question i { color: var(--gold); transition: transform var(--transition); }
+    .faq-question.open i { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; font-size: 0.9rem; color: var(--mid-grey); line-height: 1.7; }
+    .faq-answer.open { max-height: 300px; padding-bottom: 18px; }
+    .sticky-form { position: sticky; top: 90px; }
+    .form-card { background: var(--white); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-md); border: 1px solid var(--light-grey); }
+    .expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .expertise-tag { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border: 1.5px solid var(--light-grey); border-radius: 8px; cursor: pointer; font-size: 0.82rem; transition: all var(--transition); }
+    .expertise-tag:hover, .expertise-tag.selected { border-color: var(--gold); background: rgba(201,168,76,0.06); color: var(--navy); }
+    .expertise-tag input { display: none; }
+    @media (max-width: 960px) { .partner-layout { grid-template-columns: 1fr; } .sticky-form { position: static; } .gershon-services { grid-template-columns: 1fr; } .expertise-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo" style="text-decoration:none;">
+      <span class="logo-main">American<span>In</span>France</span>
+      <span class="logo-sub">A Gershon Consulting Initiative</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">Weekly Digest</a></li>
+      <li><a href="resources.html">Resource Hub</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="partners.html" class="active">Become a Partner</a></li>
+      <li><a href="partners.html" class="nav-cta">Join the Network</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO — Partner-specific dark full-width -->
+<section style="background:linear-gradient(135deg, #060F2E 0%, #0A1F5C 50%, #0d2d6e 100%); min-height:480px; display:flex; align-items:center; padding:110px 0 72px; position:relative; overflow:hidden;">
+  <div style="position:absolute; right:-100px; top:50%; transform:translateY(-50%); font-size:320px; opacity:0.04; line-height:1; pointer-events:none;">🤝</div>
+  <div style="position:absolute; bottom:0; left:0; right:0; height:60px; background:var(--off-white); clip-path:ellipse(55% 100% at 50% 100%);"></div>
+  <div class="container">
+    <div style="max-width:700px;">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Gershon Consulting Partner Program
+      </div>
+      <h1 style="color:var(--white); margin-bottom:20px;">
+        You Help French Companies Go to the US.<br><em style="color:var(--gold); font-style:normal;">We Make it Happen.</em>
+      </h1>
+      <p style="color:rgba(255,255,255,0.78); font-size:1.1rem; max-width:580px; margin-bottom:36px;">
+        Join the Gershon Consulting Partner Program. Extend your consulting offer with world-class US market entry services — and earn commissions on every client you refer.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#apply" class="btn btn-primary btn-lg">Apply Now — It's Free</a>
+        <a href="#how-it-works" class="btn btn-secondary btn-lg">How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div style="background:var(--off-white); padding:20px 0; border-bottom:1px solid var(--light-grey);">
+  <div class="container">
+    <div style="display:flex; align-items:center; gap:48px; flex-wrap:wrap; justify-content:center;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i class="fas fa-check-circle" style="color:var(--gold); font-size:1.2rem;"></i>
+        <span style="font-weight:600; font-size:0.9rem; color:var(--navy);">No upfront cost to join</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i class="fas fa-check-circle" style="color:var(--gold); font-size:1.2rem;"></i>
+        <span style="font-weight:600; font-size:0.9rem; color:var(--navy);">Commission on every referral</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i class="fas fa-check-circle" style="color:var(--gold); font-size:1.2rem;"></i>
+        <span style="font-weight:600; font-size:0.9rem; color:var(--navy);">Full training & onboarding</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i class="fas fa-check-circle" style="color:var(--gold); font-size:1.2rem;"></i>
+        <span style="font-weight:600; font-size:0.9rem; color:var(--navy);">Exclusive partner materials</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="section">
+  <div class="container">
+    <div class="partner-layout">
+
+      <!-- LEFT CONTENT -->
+      <div>
+
+        <!-- WHO IS THIS FOR -->
+        <div style="margin-bottom:56px;">
+          <span class="eyebrow">The Ideal Partner Profile</span>
+          <h2 style="margin-bottom:16px;">Is This You?</h2>
+          <p style="color:var(--mid-grey); font-size:1.05rem; margin-bottom:28px;">
+            You're an American. You live in France. You advise French companies on how to do business with or expand into the United States. Your clients trust your expertise — and they need more than strategy. They need execution.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px;">
+            <div style="background:var(--white); border:1px solid var(--light-grey); border-radius:var(--radius); padding:20px;">
+              <div style="font-size:1.5rem; margin-bottom:10px;">🎯</div>
+              <h4 style="font-size:0.95rem; margin-bottom:6px;">US Market Consultants</h4>
+              <p style="font-size:0.83rem; color:var(--mid-grey); margin:0;">Advising French companies on strategy, sales, distribution or operations in the US</p>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--light-grey); border-radius:var(--radius); padding:20px;">
+              <div style="font-size:1.5rem; margin-bottom:10px;">🏢</div>
+              <h4 style="font-size:0.95rem; margin-bottom:6px;">Business Development Advisors</h4>
+              <p style="font-size:0.83rem; color:var(--mid-grey); margin:0;">Helping French businesses build commercial relationships in the US market</p>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--light-grey); border-radius:var(--radius); padding:20px;">
+              <div style="font-size:1.5rem; margin-bottom:10px;">📊</div>
+              <h4 style="font-size:0.95rem; margin-bottom:6px;">Financial & Legal Advisors</h4>
+              <p style="font-size:0.83rem; color:var(--mid-grey); margin:0;">Supporting French companies on US legal structure, fiscal setup, or M&A</p>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--light-grey); border-radius:var(--radius); padding:20px;">
+              <div style="font-size:1.5rem; margin-bottom:10px;">🚀</div>
+              <h4 style="font-size:0.95rem; margin-bottom:6px;">Startup & Scale-up Advisors</h4>
+              <p style="font-size:0.83rem; color:var(--mid-grey); margin:0;">Supporting French tech and innovation companies in raising US market traction</p>
+            </div>
+          </div>
+          <div class="alert alert-gold">
+            <i class="fas fa-lightbulb"></i>
+            <span>Even if your current clients don't need US expansion <em>today</em> — they will. Being positioned with the right partner makes you the go-to advisor when they're ready.</span>
+          </div>
+        </div>
+
+        <!-- GERSHON SERVICES -->
+        <div style="margin-bottom:56px;" id="how-it-works">
+          <span class="eyebrow">What You're Selling</span>
+          <h2 style="margin-bottom:16px;">Gershon Consulting's US Market Entry Services</h2>
+          <p style="color:var(--mid-grey); margin-bottom:24px;">
+            As a partner, you gain access to our full suite of services to offer your French clients. You refer — we execute. You earn a commission.
+          </p>
+          <div class="gershon-services">
+            <div class="gs-card">
+              <div class="gs-icon">🗺️</div>
+              <h4>US Market Entry Strategy</h4>
+              <p>Target customer profiles, go-to-market roadmap, competitive positioning for the US market</p>
+            </div>
+            <div class="gs-card">
+              <div class="gs-icon">💼</div>
+              <h4>Sales Infrastructure Setup</h4>
+              <p>CRM implementation, sales process design, sales team recruitment and management</p>
+            </div>
+            <div class="gs-card">
+              <div class="gs-icon">🏢</div>
+              <h4>US Entity & Legal Setup</h4>
+              <p>LLC/C-Corp formation, EIN, state registration, legal compliance guidance for French companies</p>
+            </div>
+            <div class="gs-card">
+              <div class="gs-icon">🤝</div>
+              <h4>Partner & Distribution Channels</h4>
+              <p>Identifying, recruiting and managing US resellers, distributors and strategic partners</p>
+            </div>
+            <div class="gs-card">
+              <div class="gs-icon">📈</div>
+              <h4>US Marketing & Digital Presence</h4>
+              <p>Website localization, digital marketing, SEO/SEM for the US market</p>
+            </div>
+            <div class="gs-card">
+              <div class="gs-icon">🎯</div>
+              <h4>Business Development Retainer</h4>
+              <p>Ongoing US market representation, lead generation and commercial development</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div style="margin-bottom:56px;">
+          <span class="eyebrow">The Process</span>
+          <h2 style="margin-bottom:32px;">How the Partner Program Works</h2>
+          <div style="position:relative;">
+            <div style="position:absolute; left:22px; top:0; bottom:0; width:2px; background:var(--light-grey); z-index:0;"></div>
+            <div style="position:relative; z-index:1;">
+
+              <div style="display:flex; gap:20px; margin-bottom:28px; align-items:flex-start;">
+                <div style="width:46px; height:46px; min-width:46px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-weight:700; color:var(--navy); font-size:1.1rem;">1</div>
+                <div style="padding-top:10px;">
+                  <h4 style="color:var(--navy); margin-bottom:6px;">Apply Online (5 minutes)</h4>
+                  <p style="font-size:0.9rem; color:var(--mid-grey); margin:0;">Fill in the application form on this page. Tell us about your expertise, your city, and the kind of French clients you work with.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:20px; margin-bottom:28px; align-items:flex-start;">
+                <div style="width:46px; height:46px; min-width:46px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-weight:700; color:var(--navy); font-size:1.1rem;">2</div>
+                <div style="padding-top:10px;">
+                  <h4 style="color:var(--navy); margin-bottom:6px;">Discovery Call with Gershon (30 min)</h4>
+                  <p style="font-size:0.9rem; color:var(--mid-grey); margin:0;">We schedule a 30-minute video call to discuss your profile, your clients' needs, and alignment with our services. No pressure, no commitment.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:20px; margin-bottom:28px; align-items:flex-start;">
+                <div style="width:46px; height:46px; min-width:46px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-weight:700; color:var(--navy); font-size:1.1rem;">3</div>
+                <div style="padding-top:10px;">
+                  <h4 style="color:var(--navy); margin-bottom:6px;">Onboarding & Partner Materials</h4>
+                  <p style="font-size:0.9rem; color:var(--mid-grey); margin:0;">Sign a partner agreement. Receive your onboarding package: pitch deck, case studies, service descriptions, pricing guidelines and commission structure.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:20px; margin-bottom:28px; align-items:flex-start;">
+                <div style="width:46px; height:46px; min-width:46px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-weight:700; color:var(--navy); font-size:1.1rem;">4</div>
+                <div style="padding-top:10px;">
+                  <h4 style="color:var(--navy); margin-bottom:6px;">Introduce Your First Client</h4>
+                  <p style="font-size:0.9rem; color:var(--mid-grey); margin:0;">When a French client needs US market support, you introduce Gershon. We take it from there. You stay involved at whatever level you choose.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:20px; align-items:flex-start;">
+                <div style="width:46px; height:46px; min-width:46px; border-radius:50%; background:var(--navy); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-weight:700; color:var(--gold); font-size:1.1rem;">$</div>
+                <div style="padding-top:10px;">
+                  <h4 style="color:var(--navy); margin-bottom:6px;">Get Paid Your Commission</h4>
+                  <p style="font-size:0.9rem; color:var(--mid-grey); margin:0;">You receive your commission on every engagement your referral generates — recurring retainers, project fees, and renewals. Commission details discussed individually.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div style="margin-bottom:40px;">
+          <span class="eyebrow">Questions & Answers</span>
+          <h2 style="margin-bottom:28px;">Frequently Asked Questions</h2>
+          <div id="faqList">
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                Is there a cost to join the Partner Program?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                No. Joining the Gershon Consulting Partner Program is completely free. There are no fees, no minimums, and no commitments required. The program is invitation-based and we carefully select partners based on profile fit.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                What does the commission structure look like?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Commission rates are discussed individually during the discovery call, based on the type of engagement and your level of involvement. We offer competitive, transparent commissions on both one-time projects and recurring retainer contracts. Commissions apply for the full duration of a client relationship.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                Do I need to have clients actively looking for US expansion right now?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Not at all. Many partners join before they have an active referral opportunity. The goal is to be positioned and ready when the time comes. We'll support you with materials to plant the seed with your clients over time.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                What's my role after I make the introduction?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                That's entirely your choice. Some partners prefer a simple referral model (introduce, step back, collect commission). Others prefer to stay actively involved as an advisor or co-consultant. We accommodate both models and everything in between.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                What kinds of French companies are the best fit for Gershon's services?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                French SMEs and mid-market companies that are ready to explore, enter or accelerate growth in the US market. Typically companies with 10–500 employees, revenue between €2M and €100M, and a product or service that has proven demand in France but not yet in the US. We work across sectors: technology, industrial, consumer goods, professional services, luxury, food & beverage, and more.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                I'm based outside Paris — can I still join?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Absolutely. We have partners across France — Lyon, Bordeaux, Toulouse, Marseille, Nantes, Strasbourg and beyond. Geography is not a limitation. French companies everywhere are looking at the US market.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div id="contact" style="background:var(--light-grey); border-radius:var(--radius-lg); padding:32px;">
+          <h3 style="margin-bottom:8px;">Not Ready to Apply Yet?</h3>
+          <p style="color:var(--mid-grey); margin-bottom:20px; font-size:0.95rem;">Send us a direct message and we'll get back to you personally.</p>
+          <form id="contactForm">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+              <div class="form-group" style="margin:0;">
+                <input type="text" class="form-control" id="contactName" placeholder="Your name" required>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <input type="email" class="form-control" id="contactEmail" placeholder="Your email" required>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:14px;">
+              <textarea class="form-control" id="contactMessage" rows="3" placeholder="Tell us briefly about your consulting activity and your French client base…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-navy">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: STICKY FORM -->
+      <div class="sticky-form" id="apply">
+        <div class="form-card">
+          <div style="background:var(--gold); margin:-36px -36px 28px; padding:20px 28px; border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+            <h3 style="color:var(--navy); margin-bottom:4px; font-size:1.2rem;">Apply to the Partner Program</h3>
+            <p style="color:rgba(10,31,92,0.7); font-size:0.82rem; margin:0;">Free · Takes 3 minutes · No commitment</p>
+          </div>
+
+          <form id="partnerForm">
+
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" id="partnerName" placeholder="John Smith" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-control" id="partnerEmail" placeholder="john@yourcompany.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone (optional)</label>
+              <input type="tel" class="form-control" id="partnerPhone" placeholder="+33 6 XX XX XX XX">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">City in France *</label>
+              <input type="text" class="form-control" id="partnerCity" placeholder="Paris, Lyon, Bordeaux…" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">LinkedIn Profile (optional)</label>
+              <input type="url" class="form-control" id="partnerLinkedin" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Years of Consulting Experience</label>
+              <select class="form-control" id="partnerExperience">
+                <option value="">Select…</option>
+                <option>Less than 2 years</option>
+                <option>2–5 years</option>
+                <option>5–10 years</option>
+                <option>More than 10 years</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" style="margin-bottom:12px;">Areas of Expertise (select all that apply)</label>
+              <div class="expertise-grid" id="expertiseGrid">
+                <label class="expertise-tag"><input type="checkbox" value="us_market_strategy"> 🎯 US Market Strategy</label>
+                <label class="expertise-tag"><input type="checkbox" value="sales_bizdev"> 💼 Sales & BizDev</label>
+                <label class="expertise-tag"><input type="checkbox" value="legal_compliance"> ⚖️ Legal / Compliance</label>
+                <label class="expertise-tag"><input type="checkbox" value="finance_tax"> 💸 Finance / Tax</label>
+                <label class="expertise-tag"><input type="checkbox" value="marketing_digital"> 📈 Marketing / Digital</label>
+                <label class="expertise-tag"><input type="checkbox" value="hr_talent"> 👥 HR / Talent</label>
+                <label class="expertise-tag"><input type="checkbox" value="supply_chain"> 🚚 Supply Chain</label>
+                <label class="expertise-tag"><input type="checkbox" value="tech_product"> 💡 Tech / Product</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Briefly describe your French client network</label>
+              <textarea class="form-control" id="partnerNetwork" rows="3" placeholder="e.g. 'I advise 10–15 French SMEs in the food & beverage and luxury sectors, mostly Paris-based, several are actively planning US expansion in 2026…'"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox" id="partnerConsent" required>
+                <span>I agree to be contacted by Gershon Consulting about the Partner Program *</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" id="partnerSubmitBtn">
+              <i class="fas fa-handshake" style="margin-right:8px"></i>Submit My Application
+            </button>
+
+            <p style="font-size:0.75rem; color:var(--mid-grey); text-align:center; margin-top:12px; margin-bottom:0;">
+              <i class="fas fa-lock" style="margin-right:4px"></i>Your information is confidential and never shared.
+            </p>
+          </form>
+
+          <div id="partnerSuccess" style="display:none; text-align:center; padding:24px 0;">
+            <div style="font-size:3rem; margin-bottom:14px;">🤝</div>
+            <h3 style="color:var(--navy); margin-bottom:8px;">Application Received!</h3>
+            <p style="color:var(--mid-grey); font-size:0.9rem;">The Gershon Consulting team will review your application and reach out within 2 business days to schedule your discovery call.</p>
+            <p style="font-size:0.85rem; color:var(--mid-grey); margin-top:12px;">In the meantime, <a href="newsletter.html" style="color:var(--gold); font-weight:600;">subscribe to our newsletter</a> to stay informed.</p>
+          </div>
+        </div>
+
+        <!-- TRUST SIGNALS -->
+        <div style="background:var(--white); border-radius:var(--radius-lg); padding:24px; margin-top:20px; border:1px solid var(--light-grey);">
+          <h4 style="color:var(--navy); font-size:0.9rem; margin-bottom:16px; text-align:center; text-transform:uppercase; letter-spacing:1px;">Partner Program Promise</h4>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:10px; align-items:center; font-size:0.85rem; color:var(--dark);">
+              <i class="fas fa-check-circle" style="color:var(--gold); font-size:1rem;"></i>
+              No upfront cost, ever
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; font-size:0.85rem; color:var(--dark);">
+              <i class="fas fa-check-circle" style="color:var(--gold); font-size:1rem;"></i>
+              Transparent commission structure
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; font-size:0.85rem; color:var(--dark);">
+              <i class="fas fa-check-circle" style="color:var(--gold); font-size:1rem;"></i>
+              Your clients remain yours
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; font-size:0.85rem; color:var(--dark);">
+              <i class="fas fa-check-circle" style="color:var(--gold); font-size:1rem;"></i>
+              Full confidentiality guaranteed
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; font-size:0.85rem; color:var(--dark);">
+              <i class="fas fa-check-circle" style="color:var(--gold); font-size:1rem;"></i>
+              Response within 2 business days
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">American<span>In</span>France</div>
+        <p>A Gershon Consulting initiative. The definitive resource hub for Americans living and working in France — and the bridge between two great business cultures.</p>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="resources.html#taxes">US & French Taxes</a></li>
+          <li><a href="resources.html#visas">Visas & Residency</a></li>
+          <li><a href="resources.html#banking">Banking</a></li>
+          <li><a href="resources.html#business">Business</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="newsletter.html">Newsletter</a></li>
+          <li><a href="partners.html">Partner Program</a></li>
+          <li><a href="resources.html#franco-american">Franco-American Trade</a></li>
+          <li><a href="resources.html#community">Expat Communities</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Gershon Consulting</h4>
+        <ul>
+          <li><a href="#apply">Apply as Partner</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AmericanInFrance.fr — A <strong style="color:var(--gold)">Gershon Consulting</strong> Initiative. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Legal</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
