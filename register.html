@@ -1,0 +1,1159 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Your Personalized Newsletter — AmericanInFrance.fr | Gershon Consulting</title>
+  <meta name="description" content="Create your personalized weekly newsletter. Select the topics that matter to you — taxes, visas, business, healthcare — and get a curated digest every week.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== REGISTRATION PAGE STYLES ===== */
+    .reg-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .reg-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Steps indicator */
+    .steps-bar {
+      display: flex;
+      gap: 0;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .step-item {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--light-grey);
+      color: var(--mid-grey);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .step-item.active .step-circle {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 4px 16px rgba(201,168,76,0.4);
+    }
+    .step-item.done .step-circle {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .step-label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--mid-grey);
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    .step-item.active .step-label { color: var(--navy); }
+    .step-item.done .step-label { color: var(--navy); }
+    .step-connector {
+      position: absolute;
+      top: 20px;
+      left: calc(50% + 24px);
+      right: calc(-50% + 24px);
+      height: 3px;
+      background: var(--light-grey);
+      z-index: 1;
+    }
+    .step-item:last-child .step-connector { display: none; }
+    .step-item.done .step-connector { background: var(--navy); }
+
+    /* Form card */
+    .reg-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--light-grey);
+    }
+
+    /* Step panels */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Topic cards */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 600px) {
+      .topic-grid { grid-template-columns: 1fr; }
+    }
+    .topic-card {
+      position: relative;
+      background: var(--off-white);
+      border: 2px solid var(--light-grey);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .topic-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .topic-card.selected {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(10,31,92,0.04));
+      box-shadow: 0 4px 16px rgba(201,168,76,0.15);
+    }
+    .topic-card.selected .topic-check {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+    .topic-check {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 2px solid var(--light-grey);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: transparent;
+      transition: all 0.25s ease;
+    }
+    .topic-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .topic-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 3px;
+      padding-right: 28px;
+    }
+    .topic-desc {
+      font-size: 0.76rem;
+      color: var(--mid-grey);
+      line-height: 1.45;
+    }
+    .topic-card input { display: none; }
+
+    /* Subtopic pills */
+    .subtopic-section {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--light-grey);
+    }
+    .subtopic-section.visible { display: block; animation: fadeUp 0.3s ease; }
+    .subtopic-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .subtopic-header span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+    }
+    .subtopic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .subtopic-pill {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1.5px solid var(--light-grey);
+      background: var(--white);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .subtopic-pill:hover {
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+    .subtopic-pill.selected {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .subtopic-pill input { display: none; }
+
+    /* LinkedIn input with icon */
+    .input-with-icon {
+      position: relative;
+    }
+    .input-with-icon i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mid-grey);
+      font-size: 1.1rem;
+    }
+    .input-with-icon input {
+      padding-left: 42px;
+    }
+
+    /* Profile type cards */
+    .profile-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .profile-card {
+      background: var(--off-white);
+      border: 2px solid var(--light-grey);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .profile-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .profile-card.selected {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(10,31,92,0.04));
+    }
+    .profile-card input { display: none; }
+    .profile-card .pc-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .profile-card .pc-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .profile-card .pc-sub {
+      font-size: 0.75rem;
+      color: var(--mid-grey);
+    }
+
+    /* Button row */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .btn-back {
+      background: transparent;
+      color: var(--mid-grey);
+      border-color: var(--light-grey);
+    }
+    .btn-back:hover {
+      color: var(--navy);
+      border-color: var(--navy);
+      background: var(--off-white);
+    }
+
+    /* Preview sidebar */
+    .preview-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--light-grey);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 100px;
+    }
+    .preview-header {
+      background: var(--navy);
+      padding: 20px 24px;
+    }
+    .preview-header h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+    .preview-header p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      margin: 0;
+    }
+    .preview-body {
+      padding: 20px 24px;
+    }
+    .preview-section {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .preview-section:last-child { border-bottom: none; }
+    .preview-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .preview-title {
+      font-size: 0.85rem;
+      color: var(--navy);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .preview-empty {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--mid-grey);
+      font-size: 0.85rem;
+    }
+    .preview-empty i {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 10px;
+      opacity: 0.3;
+    }
+
+    /* Frequency toggle */
+    .freq-toggle {
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--light-grey);
+      margin-bottom: 24px;
+    }
+    .freq-option {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--mid-grey);
+      background: var(--off-white);
+      transition: all 0.25s ease;
+    }
+    .freq-option.selected {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .freq-option input { display: none; }
+
+    /* Success screen */
+    .success-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--navy);
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+    }
+    .summary-table {
+      text-align: left;
+      width: 100%;
+      margin: 24px 0;
+      border-collapse: collapse;
+    }
+    .summary-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light-grey);
+      font-size: 0.88rem;
+    }
+    .summary-table td:first-child {
+      font-weight: 600;
+      color: var(--navy);
+      width: 140px;
+    }
+    .summary-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .summary-tag {
+      background: var(--navy);
+      color: var(--white);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<\!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo" style="text-decoration:none;">
+      <span class="logo-main">American<span>In</span>France</span>
+      <span class="logo-sub">A Gershon Consulting Initiative</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">Weekly Digest</a></li>
+      <li><a href="resources.html">Resource Hub</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="partners.html">Become a Partner</a></li>
+      <li><a href="register.html" class="nav-cta active">Join the Network</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<\!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--gold); display:block; margin-bottom:10px;">Personalized for You</span>
+    <h1>Build Your Weekly Briefing</h1>
+    <p>Select the topics that matter to you. Every week, we'll curate a newsletter with the latest news, policy changes, and resources — tailored to your professional profile.</p>
+  </div>
+</div>
+
+<\!-- MAIN -->
+<section class="section">
+  <div class="container">
+
+    <\!-- STEPS BAR -->
+    <div class="steps-bar" id="stepsBar">
+      <div class="step-item active" data-step="1">
+        <span class="step-circle">1</span>
+        <span class="step-label">Your Topics</span>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-item" data-step="2">
+        <span class="step-circle">2</span>
+        <span class="step-label">Your Profile</span>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-item" data-step="3">
+        <span class="step-circle">3</span>
+        <span class="step-label">Preferences</span>
+        <div class="step-connector"></div>
+      </div>
+    </div>
+
+    <div class="reg-layout">
+
+      <\!-- LEFT: FORM -->
+      <div>
+        <form id="regForm" novalidate>
+          <\!-- ============ STEP 1: TOPICS ============ -->
+          <div class="step-panel active" id="step1">
+            <div class="reg-card">
+              <h2 style="margin-bottom:6px;">What do you want to stay informed about?</h2>
+              <p style="color:var(--mid-grey); margin-bottom:28px;">Select at least 3 topics. We'll build your personal digest around these.</p>
+
+              <div class="topic-grid" id="topicGrid">
+
+                <label class="topic-card" data-topic="tax-us">
+                  <input type="checkbox" name="topics" value="tax-us">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">💸</span>
+                  <span class="topic-name">US Tax & Compliance</span>
+                  <span class="topic-desc">FBAR, FATCA, FEIE, IRS enforcement, expat filing deadlines</span>
+                </label>
+
+                <label class="topic-card" data-topic="tax-fr">
+                  <input type="checkbox" name="topics" value="tax-fr">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🇫🇷</span>
+                  <span class="topic-name">French Taxes & Treaty</span>
+                  <span class="topic-desc">Income tax, CSG/CRDS, tax treaty, social charges, totalization</span>
+                </label>
+
+                <label class="topic-card" data-topic="visas">
+                  <input type="checkbox" name="topics" value="visas">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🛂</span>
+                  <span class="topic-name">Visas & Residency</span>
+                  <span class="topic-desc">Talent Passport, carte de s&eacute;jour, citizenship, language requirements</span>
+                </label>
+
+                <label class="topic-card" data-topic="business">
+                  <input type="checkbox" name="topics" value="business">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🏢</span>
+                  <span class="topic-name">Business & Entrepreneurship</span>
+                  <span class="topic-desc">Auto-entrepreneur, SASU, freelancing, company formation, ACRE</span>
+                </label>
+
+                <label class="topic-card" data-topic="banking">
+                  <input type="checkbox" name="topics" value="banking">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🏦</span>
+                  <span class="topic-name">Banking & Finance</span>
+                  <span class="topic-desc">FATCA bank access, brokerage closures, French bank accounts, investments</span>
+                </label>
+
+                <label class="topic-card" data-topic="healthcare">
+                  <input type="checkbox" name="topics" value="healthcare">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🏥</span>
+                  <span class="topic-name">Healthcare & Social Security</span>
+                  <span class="topic-desc">PUMA, CPAM, new healthcare fee, US-France social security</span>
+                </label>
+
+                <label class="topic-card" data-topic="realestate">
+                  <input type="checkbox" name="topics" value="realestate">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🏠</span>
+                  <span class="topic-name">Real Estate & Property</span>
+                  <span class="topic-desc">Buying in France, mortgages for non-residents, rental market, notaire process</span>
+                </label>
+
+                <label class="topic-card" data-topic="franco-us">
+                  <input type="checkbox" name="topics" value="franco-us">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🤝</span>
+                  <span class="topic-name">Franco-American Business</span>
+                  <span class="topic-desc">US market entry, trade shows, AmCham events, cross-border consulting</span>
+                </label>
+
+                <label class="topic-card" data-topic="policy">
+                  <input type="checkbox" name="topics" value="policy">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">📜</span>
+                  <span class="topic-name">Policy & Legislation</span>
+                  <span class="topic-desc">RBT bill tracker, voting rights, AARO/ACA advocacy, renunciation</span>
+                </label>
+
+                <label class="topic-card" data-topic="lifestyle">
+                  <input type="checkbox" name="topics" value="lifestyle">
+                  <div class="topic-check"><i class="fas fa-check"></i></div>
+                  <span class="topic-icon">🗼</span>
+                  <span class="topic-name">Life in France</span>
+                  <span class="topic-desc">Culture, language, education, driving, daily life, regional guides</span>
+                </label>
+
+              </div>
+
+              <\!-- Subtopic refinement -->
+              <div class="subtopic-section" id="subtopicSection">
+                <div class="subtopic-header">
+                  <i class="fas fa-sliders-h" style="color:var(--gold)"></i>
+                  <span>Fine-tune your interests</span>
+                </div>
+                <div id="subtopicContainer"></div>
+              </div>
+
+              <div id="topicError" style="display:none; color:var(--red); font-size:0.85rem; margin-top:12px;">
+                <i class="fas fa-exclamation-circle"></i> Please select at least 3 topics.
+              </div>
+
+              <div class="btn-row" style="justify-content:flex-end;">
+                <button type="button" class="btn btn-primary" id="toStep2">
+                  Continue <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <\!-- ============ STEP 2: PROFILE ============ -->
+          <div class="step-panel" id="step2">
+            <div class="reg-card">
+              <h2 style="margin-bottom:6px;">Tell us about yourself</h2>
+              <p style="color:var(--mid-grey); margin-bottom:28px;">This helps us personalize your newsletter and connect you with relevant professionals.</p>
+
+              <div class="form-group" style="margin-bottom:28px;">
+                <label class="form-label" style="margin-bottom:12px;">I am a...</label>
+                <div class="profile-cards">
+                  <label class="profile-card">
+                    <input type="radio" name="profileType" value="consultant">
+                    <span class="pc-icon">💼</span>
+                    <span class="pc-title">Consultant / Advisor</span>
+                    <span class="pc-sub">Independent professional</span>
+                  </label>
+                  <label class="profile-card">
+                    <input type="radio" name="profileType" value="entrepreneur">
+                    <span class="pc-icon">🚀</span>
+                    <span class="pc-title">Entrepreneur</span>
+                    <span class="pc-sub">Business owner in France</span>
+                  </label>
+                  <label class="profile-card">
+                    <input type="radio" name="profileType" value="executive">
+                    <span class="pc-icon">🏛️</span>
+                    <span class="pc-title">Executive / Employee</span>
+                    <span class="pc-sub">Working for a company</span>
+                  </label>
+                  <label class="profile-card">
+                    <input type="radio" name="profileType" value="retiree">
+                    <span class="pc-icon">🌴</span>
+                    <span class="pc-title">Retiree</span>
+                    <span class="pc-sub">Enjoying life in France</span>
+                  </label>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div class="form-group">
+                  <label class="form-label">First Name *</label>
+                  <input type="text" class="form-control" id="regFirstName" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Last Name *</label>
+                  <input type="text" class="form-control" id="regLastName" placeholder="Smith" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-control" id="regEmail" placeholder="john.smith@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">LinkedIn Profile</label>
+                <div class="input-with-icon">
+                  <i class="fab fa-linkedin"></i>
+                  <input type="url" class="form-control" id="regLinkedin" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+                <span style="font-size:0.75rem; color:var(--mid-grey); margin-top:4px; display:block;">
+                  Optional — helps us connect you with the right professionals in our network
+                </span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div class="form-group">
+                  <label class="form-label">City in France</label>
+                  <input type="text" class="form-control" id="regCity" placeholder="Paris, Lyon, Bordeaux...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Years in France</label>
+                  <select class="form-control" id="regYears">
+                    <option value="">Select...</option>
+                    <option value="planning">Still planning my move</option>
+                    <option value="<1">Less than 1 year</option>
+                    <option value="1-3">1 to 3 years</option>
+                    <option value="3-5">3 to 5 years</option>
+                    <option value="5-10">5 to 10 years</option>
+                    <option value="10+">More than 10 years</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Your expertise / industry</label>
+                <input type="text" class="form-control" id="regExpertise" placeholder="e.g. Marketing, Finance, Tech, Legal, Real Estate...">
+              </div>
+
+              <div id="profileError" style="display:none; color:var(--red); font-size:0.85rem; margin-top:12px;">
+                <i class="fas fa-exclamation-circle"></i> Please fill in the required fields.
+              </div>
+
+              <div class="btn-row">
+                <button type="button" class="btn btn-back" id="backToStep1">
+                  <i class="fas fa-arrow-left" style="margin-right:8px"></i> Back
+                </button>
+                <button type="button" class="btn btn-primary" id="toStep3">
+                  Continue <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <\!-- ============ STEP 3: PREFERENCES ============ -->
+          <div class="step-panel" id="step3">
+            <div class="reg-card">
+              <h2 style="margin-bottom:6px;">Almost there — your preferences</h2>
+              <p style="color:var(--mid-grey); margin-bottom:28px;">Choose how and when you'd like to receive your personalized digest.</p>
+
+              <div class="form-group">
+                <label class="form-label" style="margin-bottom:12px;">Newsletter frequency</label>
+                <div class="freq-toggle">
+                  <label class="freq-option selected">
+                    <input type="radio" name="frequency" value="weekly" checked>
+                    <i class="fas fa-calendar-week" style="margin-right:6px"></i> Weekly
+                  </label>
+                  <label class="freq-option">
+                    <input type="radio" name="frequency" value="biweekly">
+                    <i class="fas fa-calendar-alt" style="margin-right:6px"></i> Bi-weekly
+                  </label>
+                  <label class="freq-option">
+                    <input type="radio" name="frequency" value="monthly">
+                    <i class="fas fa-calendar" style="margin-right:6px"></i> Monthly
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Preferred delivery day</label>
+                <select class="form-control" id="regDay">
+                  <option value="monday">Monday morning</option>
+                  <option value="tuesday">Tuesday morning</option>
+                  <option value="wednesday">Wednesday morning</option>
+                  <option value="thursday">Thursday morning</option>
+                  <option value="friday">Friday morning</option>
+                  <option value="sunday" selected>Sunday evening</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" style="margin-bottom:12px;">Content depth</label>
+                <div class="freq-toggle">
+                  <label class="freq-option selected">
+                    <input type="radio" name="depth" value="headlines" checked>
+                    Headlines + Links
+                  </label>
+                  <label class="freq-option">
+                    <input type="radio" name="depth" value="summaries">
+                    With Summaries
+                  </label>
+                  <label class="freq-option">
+                    <input type="radio" name="depth" value="full">
+                    Deep Briefing
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top:28px;">
+                <label class="form-check">
+                  <input type="checkbox" id="networkOptIn">
+                  <span>Include me in the <strong>AmericanInFrance Professional Directory</strong> (visible to other members)</span>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-check">
+                  <input type="checkbox" id="partnerInterest">
+                  <span>I'm interested in the <a href="partners.html" style="color:var(--gold)">Gershon Consulting Partner Program</a></span>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-check">
+                  <input type="checkbox" id="privacyConsent" required>
+                  <span>I agree to the <a href="#" style="color:var(--gold)">privacy policy</a> and consent to receive the newsletter *</span>
+                </label>
+              </div>
+
+              <div id="prefError" style="display:none; color:var(--red); font-size:0.85rem; margin-top:12px;">
+                <i class="fas fa-exclamation-circle"></i> Please accept the privacy policy to continue.
+              </div>
+
+              <div class="btn-row">
+                <button type="button" class="btn btn-back" id="backToStep2">
+                  <i class="fas fa-arrow-left" style="margin-right:8px"></i> Back
+                </button>
+                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                  <i class="fas fa-paper-plane" style="margin-right:8px"></i> Create My Newsletter
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <\!-- ============ SUCCESS ============ -->
+          <div class="step-panel" id="stepSuccess">
+            <div class="reg-card">
+              <div class="success-screen">
+                <div class="success-icon"><i class="fas fa-check"></i></div>
+                <h2 style="margin-bottom:8px;">Welcome to AmericanInFrance\!</h2>
+                <p style="color:var(--mid-grey);">Your personalized newsletter has been configured. Here's a summary of your setup:</p>
+
+                <table class="summary-table" id="summaryTable">
+                  <tr><td>Name</td><td id="sumName">-</td></tr>
+                  <tr><td>Email</td><td id="sumEmail">-</td></tr>
+                  <tr><td>LinkedIn</td><td id="sumLinkedin">-</td></tr>
+                  <tr><td>Profile</td><td id="sumProfile">-</td></tr>
+                  <tr><td>Topics</td><td id="sumTopics"><div class="summary-tags"></div></td></tr>
+                  <tr><td>Frequency</td><td id="sumFreq">-</td></tr>
+                  <tr><td>Delivery</td><td id="sumDay">-</td></tr>
+                </table>
+
+                <p style="font-size:0.9rem; color:var(--navy); font-weight:600; margin-top:24px;">
+                  Your first personalized issue will arrive on your chosen day.
+                </p>
+
+                <div style="display:flex; gap:12px; justify-content:center; margin-top:20px;">
+                  <a href="index.html" class="btn btn-primary">Explore the Site</a>
+                  <a href="partners.html" class="btn btn-navy">Partner Program</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <\!-- RIGHT: LIVE PREVIEW -->
+      <div>
+        <div class="preview-card" id="previewCard">
+          <div class="preview-header">
+            <h4>Your Newsletter Preview</h4>
+            <p>Updates live as you select topics</p>
+          </div>
+          <div class="preview-body" id="previewBody">
+            <div class="preview-empty">
+              <i class="fas fa-envelope-open-text"></i>
+              Select topics on the left to see a preview of your personalized newsletter
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--white); border-radius:var(--radius-lg); padding:20px 24px; margin-top:16px; border:1px solid var(--light-grey);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:40px; height:40px; background:var(--navy); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:1.1rem;">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--navy); font-size:0.88rem;">Your data is safe</div>
+              <div style="font-size:0.75rem; color:var(--mid-grey);">We never share your information. Unsubscribe anytime.</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; background:var(--navy); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:1.1rem;">
+              <i class="fas fa-users"></i>
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--navy); font-size:0.88rem;">Join the network</div>
+              <div style="font-size:0.75rem; color:var(--mid-grey);">Connect with American professionals across France.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<\!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">American<span>In</span>France</div>
+        <p>A Gershon Consulting initiative. The definitive resource hub for Americans living and working in France.</p>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="resources.html#taxes">US & French Taxes</a></li>
+          <li><a href="resources.html#visas">Visas & Residency</a></li>
+          <li><a href="resources.html#banking">Banking</a></li>
+          <li><a href="resources.html#business">Business</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="newsletter.html">Newsletter</a></li>
+          <li><a href="register.html">Personalized Digest</a></li>
+          <li><a href="partners.html">Partner Program</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Gershon Consulting</h4>
+        <ul>
+          <li><a href="partners.html">US Market Entry</a></li>
+          <li><a href="partners.html">Become a Partner</a></li>
+          <li><a href="partners.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 AmericanInFrance.fr &mdash; A <strong style="color:var(--gold)">Gershon Consulting</strong> Initiative.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Legal</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+<script>
+(function() {
+  // ===== TOPIC & SUBTOPIC DATA =====
+  const subtopics = {
+    'tax-us': ['FBAR Filing', 'FATCA Form 8938', 'FEIE Exclusion', 'Foreign Tax Credit', 'IRS Enforcement', 'Renunciation & Exit Tax', 'RBT Bill Tracker', 'Remittance Tax'],
+    'tax-fr': ['Income Tax', 'CSG/CRDS', 'Tax Treaty', 'Micro-Enterprise Tax', 'VAT & Accounting', 'Social Charges', 'Totalization Agreement'],
+    'visas': ['Talent Passport', 'Carte de S\u00e9jour', 'Visitor Visa', 'EU Blue Card', 'Profession Lib\u00e9rale', 'Citizenship', 'Language Requirements', '10-Year Resident Card'],
+    'business': ['Auto-Entrepreneur', 'SASU', 'Freelancing', 'Company Formation', 'ACRE Aid', 'Electronic Invoicing', 'French Labor Law', 'Business Validation (ANEF)'],
+    'banking': ['French Bank Account', 'FATCA & Banks', 'US Brokerage Closures', 'Investments Abroad', 'Wire Transfers', 'Droit au Compte'],
+    'healthcare': ['CPAM / PUMA', 'New Healthcare Fee', 'Private Insurance', 'Social Security Agreement', 'Retiree Healthcare'],
+    'realestate': ['Buying Property', 'Mortgages for Non-Residents', 'Notaire Process', 'Rental Market', 'SCI Structure', 'Paris Market'],
+    'franco-us': ['US Market Entry', 'Trade Shows', 'AmCham Events', 'SelectUSA', 'Cross-Border Consulting', 'Franco-American Networking'],
+    'policy': ['RBT Legislation', 'Voting Rights (SAVE Act)', 'AARO Advocacy', 'ACA Campaigns', 'Americans Abroad Caucus', 'Renunciation Policy'],
+    'lifestyle': ['French Culture', 'Language Learning', 'Education & Schools', 'Driving License', 'Regional Guides', 'Pet Relocation', 'Wills & Estate']
+  };
+
+  // Sample headlines per topic for preview
+  const headlines = {
+    'tax-us': {tag: 'US Tax Alert', title: 'IRS AI Enforcement Targets Expat Returns; FEIE Rises to $132,900'},
+    'tax-fr': {tag: 'French Tax', title: 'Social Charges Update: CSG/CRDS Exemptions Under Treaty Reviewed'},
+    'visas': {tag: 'Visa Update', title: 'Talent Passport Renamed; Salary Thresholds Adjusted for 2026'},
+    'business': {tag: 'Business', title: 'Auto-Entrepreneur Charges Rise to 26.1% from July; E-Invoicing Sep Deadline'},
+    'banking': {tag: 'Banking', title: 'US Brokerage Mass-Closures Continue; Droit au Compte Workaround'},
+    'healthcare': {tag: 'Healthcare', title: 'New PUMA Fee for American Retirees: \u20ac300-600/Year Expected'},
+    'realestate': {tag: 'Property', title: 'French Market Reset: 3.4-4.2% Mortgage Rates for Non-Residents'},
+    'franco-us': {tag: 'Franco-US Business', title: 'France Leads European Registrations at SelectUSA Summit 2026'},
+    'policy': {tag: 'Policy', title: 'RBT Bill Passes House 215-214; Senate Consideration Imminent'},
+    'lifestyle': {tag: 'Life in France', title: 'B2 French Now Required for Citizenship; Museum Pricing Exemption for Residents'}
+  };
+
+  // ===== DOM =====
+  const form = document.getElementById('regForm');
+  const steps = document.querySelectorAll('.step-panel');
+  const stepItems = document.querySelectorAll('.step-item');
+  const topicCards = document.querySelectorAll('.topic-card');
+  const profileCards = document.querySelectorAll('.profile-card');
+  const freqOptions = document.querySelectorAll('.freq-option');
+  const previewBody = document.getElementById('previewBody');
+  const subtopicSection = document.getElementById('subtopicSection');
+  const subtopicContainer = document.getElementById('subtopicContainer');
+
+  let currentStep = 1;
+
+  // ===== STEP NAVIGATION =====
+  function goToStep(n) {
+    currentStep = n;
+    steps.forEach(s => s.classList.remove('active'));
+    document.getElementById(n === 4 ? 'stepSuccess' : `step${n}`).classList.add('active');
+
+    stepItems.forEach((item, i) => {
+      item.classList.remove('active', 'done');
+      if (i + 1 < n) item.classList.add('done');
+      if (i + 1 === n && n < 4) item.classList.add('active');
+      if (n === 4) item.classList.add('done');
+    });
+
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  }
+
+  // ===== TOPIC SELECTION =====
+  topicCards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('selected');
+      card.querySelector('input').checked = card.classList.contains('selected');
+      updatePreview();
+      updateSubtopics();
+    });
+  });
+
+  function getSelectedTopics() {
+    return Array.from(document.querySelectorAll('.topic-card.selected')).map(c => c.dataset.topic);
+  }
+
+  function updateSubtopics() {
+    const selected = getSelectedTopics();
+    if (selected.length === 0) {
+      subtopicSection.classList.remove('visible');
+      return;
+    }
+    subtopicSection.classList.add('visible');
+    subtopicContainer.innerHTML = '';
+
+    selected.forEach(topic => {
+      const subs = subtopics[topic];
+      if (\!subs) return;
+      const card = document.querySelector(`.topic-card[data-topic="${topic}"]`);
+      const name = card.querySelector('.topic-name').textContent;
+
+      const group = document.createElement('div');
+      group.style.marginBottom = '16px';
+      group.innerHTML = `<div style="font-size:0.78rem; font-weight:700; color:var(--navy); margin-bottom:8px;">${name}</div>`;
+      const pills = document.createElement('div');
+      pills.className = 'subtopic-pills';
+      subs.forEach(sub => {
+        const pill = document.createElement('label');
+        pill.className = 'subtopic-pill';
+        pill.innerHTML = `<input type="checkbox" name="subtopics" value="${topic}:${sub}">${sub}`;
+        pill.addEventListener('click', (e) => {
+          if (e.target.tagName \!== 'INPUT') {
+            const inp = pill.querySelector('input');
+            inp.checked = \!inp.checked;
+          }
+          pill.classList.toggle('selected', pill.querySelector('input').checked);
+        });
+        pills.appendChild(pill);
+      });
+      group.appendChild(pills);
+      subtopicContainer.appendChild(group);
+    });
+  }
+
+  // ===== PREVIEW =====
+  function updatePreview() {
+    const selected = getSelectedTopics();
+    if (selected.length === 0) {
+      previewBody.innerHTML = '<div class="preview-empty"><i class="fas fa-envelope-open-text"></i>Select topics on the left to see a preview of your personalized newsletter</div>';
+      return;
+    }
+
+    let html = '';
+    selected.forEach(topic => {
+      const h = headlines[topic];
+      if (\!h) return;
+      html += `<div class="preview-section">
+        <span class="preview-tag">${h.tag}</span>
+        <div class="preview-title">${h.title}</div>
+      </div>`;
+    });
+
+    const name = document.getElementById('regFirstName').value || 'there';
+    previewBody.innerHTML = `
+      <div style="padding:8px 0 12px; border-bottom:1px solid var(--light-grey); margin-bottom:4px;">
+        <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold); font-weight:700;">Your Weekly Briefing</div>
+        <div style="font-size:0.82rem; color:var(--mid-grey); margin-top:2px;">Hi ${name}, here's what matters this week:</div>
+      </div>
+      ${html}
+      <div style="padding:10px 0 0; text-align:center;">
+        <span style="font-size:0.7rem; color:var(--mid-grey);">${selected.length} topic${selected.length > 1 ? 's' : ''} selected</span>
+      </div>
+    `;
+  }
+
+  // ===== PROFILE CARDS =====
+  profileCards.forEach(card => {
+    card.addEventListener('click', () => {
+      profileCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      card.querySelector('input').checked = true;
+    });
+  });
+
+  // ===== FREQUENCY & DEPTH TOGGLES =====
+  document.querySelectorAll('.freq-toggle').forEach(toggle => {
+    const options = toggle.querySelectorAll('.freq-option');
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        opt.querySelector('input').checked = true;
+      });
+    });
+  });
+
+  // ===== STEP BUTTONS =====
+  document.getElementById('toStep2').addEventListener('click', () => {
+    const selected = getSelectedTopics();
+    if (selected.length < 3) {
+      document.getElementById('topicError').style.display = 'block';
+      return;
+    }
+    document.getElementById('topicError').style.display = 'none';
+    goToStep(2);
+  });
+
+  document.getElementById('backToStep1').addEventListener('click', () => goToStep(1));
+
+  document.getElementById('toStep3').addEventListener('click', () => {
+    const fn = document.getElementById('regFirstName').value.trim();
+    const ln = document.getElementById('regLastName').value.trim();
+    const em = document.getElementById('regEmail').value.trim();
+    if (\!fn || \!ln || \!em) {
+      document.getElementById('profileError').style.display = 'block';
+      return;
+    }
+    document.getElementById('profileError').style.display = 'none';
+    updatePreview();
+    goToStep(3);
+  });
+
+  document.getElementById('backToStep2').addEventListener('click', () => goToStep(2));
+
+  // ===== SUBMIT =====
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (\!document.getElementById('privacyConsent').checked) {
+      document.getElementById('prefError').style.display = 'block';
+      return;
+    }
+    document.getElementById('prefError').style.display = 'none';
+
+    // Collect data
+    const data = {
+      firstName: document.getElementById('regFirstName').value,
+      lastName: document.getElementById('regLastName').value,
+      email: document.getElementById('regEmail').value,
+      linkedin: document.getElementById('regLinkedin').value,
+      city: document.getElementById('regCity').value,
+      years: document.getElementById('regYears').value,
+      expertise: document.getElementById('regExpertise').value,
+      profileType: document.querySelector('input[name="profileType"]:checked')?.value || '',
+      topics: getSelectedTopics(),
+      subtopics: Array.from(document.querySelectorAll('input[name="subtopics"]:checked')).map(i => i.value),
+      frequency: document.querySelector('input[name="frequency"]:checked')?.value || 'weekly',
+      depth: document.querySelector('input[name="depth"]:checked')?.value || 'headlines',
+      day: document.getElementById('regDay').value,
+      networkOptIn: document.getElementById('networkOptIn').checked,
+      partnerInterest: document.getElementById('partnerInterest').checked
+    };
+
+    // Show success
+    document.getElementById('sumName').textContent = `${data.firstName} ${data.lastName}`;
+    document.getElementById('sumEmail').textContent = data.email;
+    document.getElementById('sumLinkedin').innerHTML = data.linkedin
+      ? `<a href="${data.linkedin}" target="_blank" style="color:var(--gold)">${data.linkedin.replace('https://linkedin.com/in/','').replace('https://www.linkedin.com/in/','')}</a>`
+      : '<span style="color:var(--mid-grey)">Not provided</span>';
+    document.getElementById('sumProfile').textContent = data.profileType ? data.profileType.charAt(0).toUpperCase() + data.profileType.slice(1) : '-';
+    document.getElementById('sumFreq').textContent = data.frequency.charAt(0).toUpperCase() + data.frequency.slice(1);
+    document.getElementById('sumDay').textContent = data.day.charAt(0).toUpperCase() + data.day.slice(1) + ' morning';
+
+    const tagsContainer = document.querySelector('#sumTopics .summary-tags');
+    tagsContainer.innerHTML = '';
+    data.topics.forEach(t => {
+      const card = document.querySelector(`.topic-card[data-topic="${t}"]`);
+      const name = card ? card.querySelector('.topic-name').textContent : t;
+      tagsContainer.innerHTML += `<span class="summary-tag">${name}</span>`;
+    });
+
+    // Store in localStorage for future use
+    try { localStorage.setItem('aif_registration', JSON.stringify(data)); } catch(e) {}
+
+    goToStep(4);
+
+    // Hide preview on success
+    document.getElementById('previewCard').style.display = 'none';
+  });
+
+})();
+</script>
+</body>
+</html>
