@@ -1,6 +1,7 @@
 /* ============================================================
    AmericanInFrance.fr — Main JavaScript
-   Handles: Navbar, Forms, Search, Filtering, FAQ, Toasts, Tables API
+   Handles: Navbar, Search, Filtering, FAQ, Toasts
+   Note: form handlers removed — Airtable iframe embeds handle submissions.
    ============================================================ */
 
 // ---- NAVBAR ----
@@ -51,7 +52,6 @@ document.querySelectorAll('.interest-tag, .expertise-tag').forEach(tag => {
 function toggleFaq(el) {
   const answer = el.nextElementSibling;
   const isOpen = answer.classList.contains('open');
-  // Close all open
   document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
   document.querySelectorAll('.faq-question.open').forEach(q => q.classList.remove('open'));
   if (!isOpen) {
@@ -93,7 +93,6 @@ if (resourceSearch) {
     if (searchCount) {
       searchCount.textContent = q ? `${visible} result${visible !== 1 ? 's' : ''}` : '';
     }
-    // Show/hide category sections based on visible children
     document.querySelectorAll('.category-section').forEach(section => {
       const anyVisible = [...section.querySelectorAll('.resource-link')].some(l => l.style.display !== 'none');
       section.style.display = anyVisible ? '' : 'none';
@@ -118,7 +117,6 @@ if (filterBtns.length > 0) {
           link.style.display = (cat === filter) ? '' : 'none';
         }
       });
-      // Hide empty sections
       document.querySelectorAll('.category-section').forEach(section => {
         const anyVisible = [...section.querySelectorAll('.resource-link')].some(l => l.style.display !== 'none');
         section.style.display = anyVisible ? '' : 'none';
@@ -127,145 +125,13 @@ if (filterBtns.length > 0) {
   });
 }
 
-// ---- COLLECT SELECTED INTERESTS ----
-function getSelectedInterests(gridId) {
-  const grid = document.getElementById(gridId);
-  if (!grid) return [];
-  return [...grid.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value);
-}
-
-// ---- NEWSLETTER FORM (homepage inline) ----
-const heroNewsletterForm = document.getElementById('heroNewsletterForm');
-if (heroNewsletterForm) {
-  heroNewsletterForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('heroEmail').value.trim();
-    if (!email) return;
-    try {
-      await fetch('tables/newsletter_subscribers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, subscribed_at: new Date().toISOString() })
-      });
-      showToast('✅ You\'re subscribed! Welcome to AmericanInFrance.', 'success');
-      heroNewsletterForm.reset();
-    } catch {
-      showToast('Something went wrong. Please try again.', 'error');
-    }
-  });
-}
-
-// ---- NEWSLETTER FULL FORM (newsletter.html) ----
-const newsletterForm = document.getElementById('newsletterForm');
-if (newsletterForm) {
-  newsletterForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('subSubmitBtn');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Subscribing…';
-
-    const data = {
-      first_name: document.getElementById('firstName').value.trim(),
-      last_name: document.getElementById('lastName').value.trim(),
-      email: document.getElementById('subEmail').value.trim(),
-      city: document.getElementById('subCity').value.trim(),
-      years_in_france: document.getElementById('yearsInFrance').value,
-      interests: getSelectedInterests('interestsGrid'),
-      is_consultant: document.getElementById('isConsultant').checked,
-      subscribed_at: new Date().toISOString()
-    };
-
-    try {
-      const res = await fetch('tables/newsletter_subscribers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok || res.status === 201) {
-        newsletterForm.style.display = 'none';
-        document.getElementById('subSuccess').style.display = 'block';
-        showToast('✅ Welcome to AmericanInFrance!', 'success');
-      } else {
-        throw new Error('API error');
-      }
-    } catch {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-envelope" style="margin-right:8px"></i>Subscribe to the Newsletter';
-      showToast('Something went wrong. Please try again.', 'error');
-    }
-  });
-}
-
-// ---- PARTNER APPLICATION FORM (partners.html) ----
-const partnerForm = document.getElementById('partnerForm');
-if (partnerForm) {
-  partnerForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('partnerSubmitBtn');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Submitting…';
-
-    const data = {
-      full_name: document.getElementById('partnerName').value.trim(),
-      email: document.getElementById('partnerEmail').value.trim(),
-      phone: document.getElementById('partnerPhone').value.trim(),
-      city: document.getElementById('partnerCity').value.trim(),
-      linkedin: document.getElementById('partnerLinkedin').value.trim(),
-      years_experience: document.getElementById('partnerExperience').value,
-      expertise: getSelectedInterests('expertiseGrid'),
-      network_description: document.getElementById('partnerNetwork').value.trim(),
-      status: 'new_lead',
-      submitted_at: new Date().toISOString()
-    };
-
-    try {
-      const res = await fetch('tables/consultant_partners', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok || res.status === 201) {
-        partnerForm.style.display = 'none';
-        document.getElementById('partnerSuccess').style.display = 'block';
-        showToast('🤝 Application received! We\'ll be in touch within 2 business days.', 'success');
-      } else {
-        throw new Error('API error');
-      }
-    } catch {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-handshake" style="margin-right:8px"></i>Submit My Application';
-      showToast('Something went wrong. Please try again.', 'error');
-    }
-  });
-}
-
-// ---- CONTACT FORM (partners.html) ----
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('contactName').value.trim();
-    const email = document.getElementById('contactEmail').value.trim();
-    const message = document.getElementById('contactMessage').value.trim();
-    try {
-      await fetch('tables/consultant_partners', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          full_name: name,
-          email,
-          network_description: message,
-          status: 'new_lead',
-          submitted_at: new Date().toISOString()
-        })
-      });
-      showToast('✉️ Message sent! We\'ll get back to you soon.', 'success');
-      contactForm.reset();
-    } catch {
-      showToast('Something went wrong. Please try again.', 'error');
-    }
-  });
-}
+// ---- LEGACY FORM HANDLERS REMOVED ----
+// Previously POSTed to /tables/newsletter_subscribers and /tables/consultant_partners,
+// which were Genspark Tables endpoints that don't exist on GitHub Pages — every
+// submission silently failed. Forms are now handled via Airtable embeds:
+//   - register.html → Registration form (appfSgoJ6ac2H4k4Y/shrR8jcrVF8aFKRJG)
+//   - newsletter.html → Newsletter form (appfSgoJ6ac2H4k4Y/shrDOWBV1d81Y5pie)
+// Inline newsletter pitches on topic pages now link to /newsletter.html.
 
 // ---- SMOOTH SCROLL for anchor links ----
 document.querySelectorAll('a[href^="#"]').forEach(link => {
