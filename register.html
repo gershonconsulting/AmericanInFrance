@@ -3,17 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join Your Personalized Newsletter — AmericanInFrance.fr | Gershon Consulting</title>
-<meta name="description" content="Create your personalized weekly newsletter. Select the topics that matter to you — taxes, visas, business, healthcare — and get a curated digest every week.">
+<title>Build Your Personalized Newsletter — AmericanInFrance.fr | Gershon Consulting</title>
+<meta name="description" content="Pick the topics that matter to you — taxes, visas, business, healthcare and more. Get a curated weekly digest tailored to your professional profile.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 <style>
-.reg-embed-wrap { max-width: 880px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 32px rgba(10,31,92,0.08); overflow: hidden; border: 1px solid rgba(10,31,92,0.06); }
-.reg-embed-wrap iframe { display: block; width: 100%; min-height: 1200px; border: 0; background: transparent; }
-.reg-fallback { text-align: center; padding: 24px; color: #6b7280; font-size: 0.92rem; }
-.reg-fallback a { color: var(--gold, #c9a84c); font-weight: 600; }
+:root {
+  --navy: #0A1F5C;
+  --gold: #C9A84C;
+  --white: #ffffff;
+  --off-white: #fafafa;
+  --light-grey: #e5e7eb;
+  --mid-grey: #6b7280;
+  --dark: #1f2937;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 2px 8px rgba(10,31,92,0.05);
+  --shadow-md: 0 4px 16px rgba(10,31,92,0.08);
+}
+.reg-card { max-width: 880px; margin: 0 auto; background: var(--white); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md); border: 1px solid var(--light-grey); }
+.reg-card h2 { margin: 0 0 6px; color: var(--navy); font-family: 'Playfair Display', serif; font-size: 1.7rem; }
+.reg-card .subhed { color: var(--mid-grey); margin-bottom: 28px; font-size: 0.95rem; }
+.section-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); margin: 28px 0 12px; display: block; }
+.section-label .req { color: var(--gold); margin-left: 6px; }
+.topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .topic-grid { grid-template-columns: 1fr; } }
+.topic-card { position: relative; background: var(--off-white); border: 2px solid var(--light-grey); border-radius: var(--radius); padding: 16px 18px; cursor: pointer; transition: all 0.2s ease; user-select: none; display: block; }
+.topic-card:hover { border-color: var(--gold); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.topic-card.selected { border-color: var(--gold); background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(10,31,92,0.04)); box-shadow: 0 4px 16px rgba(201,168,76,0.15); }
+.topic-card input { display: none; }
+.topic-check { position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--light-grey); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: transparent; background: var(--white); transition: all 0.2s ease; }
+.topic-card.selected .topic-check { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+.topic-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+.topic-name { font-weight: 700; font-size: 0.92rem; color: var(--navy); display: block; margin-bottom: 2px; padding-right: 28px; }
+.topic-desc { font-size: 0.78rem; color: var(--mid-grey); line-height: 1.4; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.form-control { width: 100%; padding: 12px 14px; border: 1px solid var(--light-grey); border-radius: var(--radius); font-size: 0.95rem; font-family: inherit; color: var(--dark); background: var(--white); transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box; }
+.form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.18); }
+.consent-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--mid-grey); line-height: 1.5; background: var(--off-white); padding: 14px 16px; border-radius: var(--radius); border: 1px solid var(--light-grey); }
+.consent-row input { margin-top: 3px; }
+.btn-submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 16px 24px; background: var(--navy); color: var(--white); font-size: 1rem; font-weight: 600; font-family: inherit; border: none; border-radius: var(--radius); cursor: pointer; margin-top: 24px; transition: background 0.2s, transform 0.1s; }
+.btn-submit:hover { background: #061548; }
+.btn-submit:active { transform: translateY(1px); }
+.btn-submit:disabled { background: var(--mid-grey); cursor: not-allowed; }
+.error-msg { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 10px 14px; border-radius: var(--radius); font-size: 0.88rem; margin-top: 12px; display: none; }
+.error-msg.show { display: block; }
+.success-state { display: none; text-align: center; padding: 24px 0; }
+.success-state.show { display: block; }
+.success-icon { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); color: var(--white); display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 18px; }
+.success-state h3 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 8px; }
+.success-state p { color: var(--mid-grey); }
+.privacy-note { font-size: 0.78rem; color: var(--mid-grey); text-align: center; margin-top: 14px; }
+.privacy-note i { margin-right: 4px; color: var(--gold); }
+.hp-field { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -31,19 +78,129 @@
 </div></nav>
 <div class="page-hero"><div class="container">
 <span class="eyebrow" style="color:var(--gold); display:block; margin-bottom:10px;">Personalized for You</span>
-<h1>Join the Americans-in-France Network</h1>
-<p>Tell us a bit about yourself and the topics you care about. Every week we'll send you a curated digest — taxes, visas, business, healthcare, community — focused on what matters to <strong>you</strong>.</p>
+<h1>Build Your Weekly Briefing</h1>
+<p>Pick the topics that matter to you. Every week we'll send a curated digest — tax updates, visa changes, business news, healthcare, community — focused on what <strong>you</strong> care about. Free. Unsubscribe anytime.</p>
 </div></div>
 <section class="section"><div class="container">
-<div class="reg-embed-wrap">
-<iframe class="airtable-embed" src="https://airtable.com/embed/appfSgoJ6ac2H4k4Y/shrR8jcrVF8aFKRJG?backgroundColor=blue" title="AmericanInFrance Registration Form" loading="lazy" allow="clipboard-write"></iframe>
-<div class="reg-fallback">Form not loading? <a href="https://airtable.com/appfSgoJ6ac2H4k4Y/shrR8jcrVF8aFKRJG" target="_blank" rel="noopener">Open the form in a new tab &rarr;</a></div>
+<div class="reg-card" id="regCard">
+<form id="regForm" novalidate>
+<h2>Tell us about you</h2>
+<p class="subhed">3 short steps. ~60 seconds. No spam — ever.</p>
+<input type="text" class="hp-field" name="website" tabindex="-1" autocomplete="off">
+<span class="section-label">1. Who you are <span class="req">*</span></span>
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label" for="regFirstName">First name</label>
+    <input type="text" class="form-control" id="regFirstName" placeholder="John" required>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="regLastName">Last name</label>
+    <input type="text" class="form-control" id="regLastName" placeholder="Smith" required>
+  </div>
 </div>
-<p style="text-align:center; margin-top:24px; color:var(--mid-grey); font-size:0.9rem;"><i class="fas fa-lock" style="margin-right:6px"></i>Your data is private and never shared. You can unsubscribe anytime.</p>
+<div class="form-group">
+  <label class="form-label" for="regEmail">Email address</label>
+  <input type="email" class="form-control" id="regEmail" placeholder="john.smith@example.com" required>
+</div>
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label" for="regCity">City in France <span style="color:var(--mid-grey); font-weight:400;">(optional)</span></label>
+    <input type="text" class="form-control" id="regCity" placeholder="Paris, Lyon, Bordeaux…">
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="regProfile">Profile type <span style="color:var(--mid-grey); font-weight:400;">(optional)</span></label>
+    <select class="form-control" id="regProfile">
+      <option value="">Select…</option>
+      <option value="Consultant">Consultant / Advisor</option>
+      <option value="Entrepreneur">Entrepreneur / Founder</option>
+      <option value="Executive">Executive / Manager</option>
+      <option value="Retiree">Retiree</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+</div>
+<span class="section-label">2. What topics interest you most? <span class="req">*</span></span>
+<p class="subhed" style="margin-top:-6px; margin-bottom:14px; font-size:0.85rem;">Select all that apply. We'll tailor your weekly digest around these.</p>
+<div class="topic-grid" id="topicGrid">
+  <label class="topic-card" data-topic="taxes">
+    <input type="checkbox" name="topics" value="taxes">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">💸</span>
+    <span class="topic-name">US &amp; French Taxes</span>
+    <span class="topic-desc">FBAR, FATCA, FEIE, French income tax, treaty</span>
+  </label>
+  <label class="topic-card" data-topic="visas">
+    <input type="checkbox" name="topics" value="visas">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">🛂</span>
+    <span class="topic-name">Visas &amp; Residency</span>
+    <span class="topic-desc">Talent passport, carte de séjour, citizenship</span>
+  </label>
+  <label class="topic-card" data-topic="banking">
+    <input type="checkbox" name="topics" value="banking">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">🏦</span>
+    <span class="topic-name">Banking &amp; Finance</span>
+    <span class="topic-desc">French accounts, FATCA banks, brokerage access</span>
+  </label>
+  <label class="topic-card" data-topic="business">
+    <input type="checkbox" name="topics" value="business">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">🏢</span>
+    <span class="topic-name">Business / US Expansion</span>
+    <span class="topic-desc">Auto-entrepreneur, SASU, US market entry</span>
+  </label>
+  <label class="topic-card" data-topic="healthcare">
+    <input type="checkbox" name="topics" value="healthcare">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">⚕️</span>
+    <span class="topic-name">Healthcare</span>
+    <span class="topic-desc">CPAM/PUMA, new contributions, private insurance</span>
+  </label>
+  <label class="topic-card" data-topic="legal">
+    <input type="checkbox" name="topics" value="legal">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">⚖️</span>
+    <span class="topic-name">Legal &amp; Admin</span>
+    <span class="topic-desc">Wills, estate, French labor law, ANEF, prefecture</span>
+  </label>
+  <label class="topic-card" data-topic="community">
+    <input type="checkbox" name="topics" value="community">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">🤝</span>
+    <span class="topic-name">Expat Community</span>
+    <span class="topic-desc">AmCham, AARO, voting, Franco-American events</span>
+  </label>
+  <label class="topic-card" data-topic="culture">
+    <input type="checkbox" name="topics" value="culture">
+    <span class="topic-check"><i class="fas fa-check"></i></span>
+    <span class="topic-icon">🗼</span>
+    <span class="topic-name">Culture &amp; Daily Life</span>
+    <span class="topic-desc">French language, schools, driving, real estate</span>
+  </label>
+</div>
+<span class="section-label">3. Privacy <span class="req">*</span></span>
+<label class="consent-row">
+  <input type="checkbox" id="regConsent" required>
+  <span>I agree to receive the AmericanInFrance weekly newsletter and to AmericanInFrance.fr storing my data per the <a href="#" style="color:var(--gold); font-weight:600;">privacy policy</a>. I can unsubscribe anytime.</span>
+</label>
+<div class="error-msg" id="regError"></div>
+<button type="submit" class="btn-submit" id="regSubmit">
+  <i class="fas fa-envelope-open-text"></i> Subscribe to my Weekly Briefing
+</button>
+<p class="privacy-note"><i class="fas fa-lock"></i>Your data is never shared. Powered by Brevo (RGPD-compliant).</p>
+</form>
+<div class="success-state" id="regSuccess">
+  <div class="success-icon"><i class="fas fa-check"></i></div>
+  <h3>Welcome aboard!</h3>
+  <p>Check your inbox for a confirmation email. Your first personalized digest arrives next week.</p>
+  <p style="margin-top:18px; font-size:0.85rem;"><a href="index.html" style="color:var(--gold); font-weight:600;">Back to AmericanInFrance.fr →</a></p>
+</div>
+</div>
 </div></section>
 <footer class="footer"><div class="container">
 <div class="footer-grid">
-<div class="footer-brand"><div class="logo-main">American<span>In</span>France</div><p>A Gershon Consulting initiative. The definitive resource hub for Americans living and working in France.</p></div>
+<div class="footer-brand"><div class="logo-main">American<span>In</span>France</div><p>A Gershon Consulting initiative.</p></div>
 <div><h4>Resources</h4><ul><li><a href="resources.html#taxes">US &amp; French Taxes</a></li><li><a href="resources.html#visas">Visas &amp; Residency</a></li><li><a href="resources.html#banking">Banking</a></li><li><a href="resources.html#business">Business</a></li></ul></div>
 <div><h4>Community</h4><ul><li><a href="newsletter.html">Newsletter</a></li><li><a href="register.html">Personalized Digest</a></li><li><a href="partners.html">Partner Program</a></li></ul></div>
 <div><h4>Gershon Consulting</h4><ul><li><a href="partners.html">US Market Entry</a></li><li><a href="partners.html">Become a Partner</a></li><li><a href="partners.html#contact">Contact</a></li></ul></div>
@@ -51,7 +208,90 @@
 <div class="footer-bottom"><p>&copy; 2026 AmericanInFrance.fr &mdash; A <strong style="color:var(--gold)">Gershon Consulting</strong> Initiative.</p><div class="footer-legal"><a href="#">Privacy</a><a href="#">Legal</a></div></div>
 </div></footer>
 <button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
-<div class="toast" id="toast"></div>
 <script src="js/main.js"></script>
+<!-- ===== BREVO INTEGRATION =====
+     Replace the two placeholders below with your real Brevo values.
+     1. BREVO_API_KEY → Brevo dashboard → SMTP & API → API Keys → Generate new key (v3).
+     2. BREVO_LIST_ID → Brevo dashboard → Contacts → Lists → click your list → ID is in the URL.
+     For production: route this through a Cloudflare Worker proxy so the API key isn't exposed in client JS.
+================================================================ -->
+<script>
+(function() {
+  const BREVO_API_KEY = 'REPLACE_WITH_YOUR_BREVO_V3_API_KEY';
+  const BREVO_LIST_ID = 0; // e.g. 2 — replace with your list ID (integer)
+  const TOPIC_ATTRS = {
+    taxes: 'TOPIC_TAXES', visas: 'TOPIC_VISAS', banking: 'TOPIC_BANKING',
+    business: 'TOPIC_BUSINESS', healthcare: 'TOPIC_HEALTHCARE', legal: 'TOPIC_LEGAL',
+    community: 'TOPIC_COMMUNITY', culture: 'TOPIC_CULTURE'
+  };
+  const topicCards = document.querySelectorAll('.topic-card');
+  topicCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      e.preventDefault();
+      const input = card.querySelector('input[type="checkbox"]');
+      input.checked = !input.checked;
+      card.classList.toggle('selected', input.checked);
+    });
+    const input = card.querySelector('input[type="checkbox"]');
+    card.classList.toggle('selected', input.checked);
+  });
+  const form = document.getElementById('regForm');
+  const submit = document.getElementById('regSubmit');
+  const errBox = document.getElementById('regError');
+  const success = document.getElementById('regSuccess');
+  function showError(msg) { errBox.textContent = msg; errBox.classList.add('show'); }
+  function clearError() { errBox.classList.remove('show'); }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+    if (form.elements['website'].value.trim() !== '') return;
+    const firstName = document.getElementById('regFirstName').value.trim();
+    const lastName = document.getElementById('regLastName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const city = document.getElementById('regCity').value.trim();
+    const profile = document.getElementById('regProfile').value;
+    const consent = document.getElementById('regConsent').checked;
+    const selectedTopics = Array.from(document.querySelectorAll('input[name="topics"]:checked')).map(i => i.value);
+    if (!firstName || !lastName) return showError('Please enter your first and last name.');
+    const at = email.indexOf('@'); const dot = email.lastIndexOf('.');
+    if (!email || at < 1 || dot < at + 2 || dot > email.length - 2) return showError('Please enter a valid email address.');
+    if (selectedTopics.length === 0) return showError('Please select at least one topic.');
+    if (!consent) return showError('Please accept the privacy terms to continue.');
+    const attributes = { FIRSTNAME: firstName, LASTNAME: lastName };
+    if (city) attributes.CITY = city;
+    if (profile) attributes.PROFILE_TYPE = profile;
+    Object.keys(TOPIC_ATTRS).forEach(key => { attributes[TOPIC_ATTRS[key]] = selectedTopics.includes(key); });
+    submit.disabled = true;
+    submit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing…';
+    if (BREVO_API_KEY === 'REPLACE_WITH_YOUR_BREVO_V3_API_KEY') {
+      submit.disabled = false;
+      submit.innerHTML = '<i class="fas fa-envelope-open-text"></i> Subscribe to my Weekly Briefing';
+      return showError('The Brevo API key is not configured yet. (Setup-time error — visible to administrators only.)');
+    }
+    try {
+      const payload = { email: email, attributes: attributes, updateEnabled: true };
+      if (BREVO_LIST_ID > 0) payload.listIds = [BREVO_LIST_ID];
+      const res = await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: { 'accept': 'application/json', 'content-type': 'application/json', 'api-key': BREVO_API_KEY },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok || res.status === 201 || res.status === 204) {
+        document.getElementById('regCard').querySelector('form').style.display = 'none';
+        success.classList.add('show');
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const msg = data.message || data.code || ('Brevo returned status ' + res.status);
+        throw new Error(msg);
+      }
+    } catch (err) {
+      submit.disabled = false;
+      submit.innerHTML = '<i class="fas fa-envelope-open-text"></i> Subscribe to my Weekly Briefing';
+      showError('Could not subscribe right now: ' + err.message + '. Please try again or email us directly.');
+    }
+  });
+})();
+</script>
 </body>
-</html>
+                                                   </html>
