@@ -5,7 +5,7 @@
    ============================================================ */
 (function() {
 'use strict';
-// ── FEED CONFIGURATION ────────────────────────────────────
+// ── FEED CONFIGURATION ────────────────────────────────────────
 const FEEDS_CONFIG = {
 
   business: [
@@ -34,7 +34,7 @@ const FEEDS_CONFIG = {
   ]
 };
 
-// ── STATIC FALLBACK CONTENT ───────────────────────────────
+// ── STATIC FALLBACK CONTENT ───────────────────────────────────────
 // Shown when all live feeds fail — always looks great
 const STATIC_FALLBACK = [
   {
@@ -95,11 +95,17 @@ const STATIC_FALLBACK = [
   }
 ];
 
-// ── CORS PROXY SETTINGS ───────────────────────────────────
+// ── CORS PROXY SETTINGS ───────────────────────────────────────────
 const CORS_PROXY   = "https://api.allorigins.win/get?url=";
 const CACHE_PREFIX = "aif_feed_v2_";
 const CACHE_TTL    = 4 * 60 * 60 * 1000;   // 4 hours
 const FEED_TIMEOUT = 7000;                   // 7 seconds per feed
+const PROXY_DOWN_KEY = "aif_proxy_down";     // circuit breaker: skip proxy for 30 min after a network/CORS failure
+const PROXY_DOWN_TTL = 30 * 60 * 1000;
+function proxyIsDown() {
+  try { return Date.now() - Number(localStorage.getItem(PROXY_DOWN_KEY) || 0) < PROXY_DOWN_TTL; } catch(e) { return false; }
+}
+function markProxyDown() { try { localStorage.setItem(PROXY_DOWN_KEY, String(Date.now())); } catch(e) {} }
 
 // ── Fetch ONE feed via allorigins CORS proxy ──────────────
 async function fetchFeed(feedConfig) {
@@ -115,6 +121,10 @@ async function fetchFeed(feedConfig) {
       }
     }
   } catch(e) { /* ignore bad cache */ }
+
+  // Proxy recently unreachable: skip the request so pages fall back to curated
+  // articles quietly instead of logging a failed fetch per feed.
+  if (proxyIsDown()) return [];
 
   try {
     const proxyUrl = CORS_PROXY + encodeURIComponent(feedConfig.url);
@@ -165,6 +175,7 @@ async function fetchFeed(feedConfig) {
     return items.map(i => ({ ...i, source: feedConfig }));
 
   } catch(err) {
+    if (err instanceof TypeError) markProxyDown();   // fetch() network/CORS failure
     console.warn(`[AIF] Feed failed: ${feedConfig.name} — ${err.message}`);
     return [];
   }
