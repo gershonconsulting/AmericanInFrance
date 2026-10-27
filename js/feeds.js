@@ -5,7 +5,7 @@
    ============================================================ */
 (function() {
 'use strict';
-// ── FEED CONFIGURATION ────────────────────────────────────────
+// ── FEED CONFIGURATION ────────────────────────────────────
 const FEEDS_CONFIG = {
 
   business: [
@@ -34,7 +34,7 @@ const FEEDS_CONFIG = {
   ]
 };
 
-// ── STATIC FALLBACK CONTENT ───────────────────────────────────────
+// ── STATIC FALLBACK CONTENT ───────────────────────────────
 // Shown when all live feeds fail — always looks great
 const STATIC_FALLBACK = [
   {
@@ -95,7 +95,7 @@ const STATIC_FALLBACK = [
   }
 ];
 
-// ── CORS PROXY SETTINGS ───────────────────────────────────────────
+// ── CORS PROXY SETTINGS ───────────────────────────────────
 const CORS_PROXY   = "https://api.allorigins.win/get?url=";
 const CACHE_PREFIX = "aif_feed_v2_";
 const CACHE_TTL    = 4 * 60 * 60 * 1000;   // 4 hours
