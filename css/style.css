@@ -894,3 +894,15 @@ select.form-control { cursor: pointer; }
   .newsletter-form { flex-direction: column; }
   .partner-steps { grid-template-columns: 1fr; }
 }
+
+/* ---- MOBILE OVERFLOW FIX (nightly 2026-10-27) ----
+   Inline-styled grids on the homepage (leaders band, news widget) kept fixed
+   columns at phone width and pushed the page to 553px. Stack them and let
+   grid children shrink. */
+[style*="grid-template-columns"] > * { min-width: 0; max-width: 100%; box-sizing: border-box; overflow-wrap: anywhere; }
+@media (max-width: 768px) {
+  [style*="grid-template-columns:1fr 320px"],
+  [style*="grid-template-columns: 1fr 320px"],
+  [style*="grid-template-columns: 1fr 1fr; gap:48px"] { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+  [style*="minmax(340px"] { grid-template-columns: minmax(0, 1fr) !important; }
+}
