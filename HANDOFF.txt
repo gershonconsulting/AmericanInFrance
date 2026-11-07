@@ -1,0 +1,107 @@
+================================================================
+HANDOFF.txt  -  AmericanInFrance
+Written by: Claude (nightly run) - token-limit handoff protocol
+Date: 2026-10-22 (night of 2026-10-21 ET)
+Reason: every repo must carry a handoff so another AI can continue
+        from this file alone.
+================================================================
+
+0. WHO YOU ARE READING THIS
+----------------------------------------------------------------
+You are an AI assistant taking over this repository for Olivier Attia,
+founder / CTO of Gershon Consulting LLC.
+
+Read the MASTER HANDOFF first:
+  github.com/gershonconsulting/memory -> HANDOFF.txt
+
+CRITICAL OPERATING RULES:
+  * Olivier does NOT use a terminal, CLI, git or PowerShell. Never give
+    him commands or 'just run this' steps.
+  * He does NOT upload/download/move files. YOU find the route.
+  * End every actionable reply with:
+      GREEN CHECK = ready for him to test (+ link)
+      RED CROSS   = something still to do (+ exactly 3 options he can
+                    action - never a CLI step)
+  * Executors: Ariel = code/repo work. Charles = Chrome extension and web
+    admin panels (Cloudflare, GitHub settings, DNS, publishing).
+
+1. WHAT THIS REPO IS
+----------------------------------------------------------------
+Product / site name : AmericanInFrance.fr - 'A Gershon Consulting Initiative'
+Live URL            : https://americaninfrance.fr
+What it does        : Resource hub for Americans living in France and French
+                      companies expanding to the US: 150+ curated links in 12
+                      categories, 45+ topic landing pages in 6 pillars (Living
+                      in France, Taxes, Business in France, US Market
+                      Expansion, Community, Gershon hub), weekly digest page
+                      with RSS, newsletter, partner program, register page,
+                      plus a multilingual /articles/ hub (2026-10-11).
+Who uses it         : Americans in France; French firms going to the US;
+                      funnel to Gershon Consulting. Sister: AmericanAbroad.net.
+
+2. STACK AND DEPLOY ROUTE
+----------------------------------------------------------------
+Language / framework: Pure HTML5 + CSS3 + vanilla JS, no build step.
+                      Google Fonts, Font Awesome CDN.
+Hosting             : CONFLICTING (unverified). PUBLISHING.md says GitHub
+                      Pages serves main directly with CNAME americaninfrance.fr
+                      but NO CNAME file exists in the repo root today and
+                      there is no .github folder. The README says 'static
+                      hosting (GitHub Pages, Netlify, Vercel compatible)'.
+                      Commit history mentions 'Pages'. Confirm the real host
+                      (GitHub Pages vs Cloudflare Pages vs Hostinger).
+DNS / registrar     : Cloudflare/Tierra.net per platform defaults (unverified).
+Deploy method       : None in repo (no workflows). Assume commit to main =
+                      live via the host's Git integration (unverified).
+Default branch      : main (stale branch: claude/registration-files-email-
+                      search-lLqnW)
+How to ship a change: Branch, PR, merge to main. Articles: PUBLISHING.md.
+Secrets / env vars  : None in repo.
+
+3. RECENTLY DONE  [DONE]
+----------------------------------------------------------------
+- 2026-05-07 Dead form handlers removed (Genspark Tables endpoints do not
+  exist on Pages); newsletter forms converted to Subscribe/Personalize link
+  CTAs across topic pages.
+- 2026-05-08 register.html updated.
+- 2026-10-11 Multilingual articles hub + first EN article 'Best way for
+  French firms to win US buyers'.
+
+4. PENDING  [TODO]  (from README 'Next Development Steps', unverified status)
+----------------------------------------------------------------
+- Schema.org + Open Graph on all pages; analytics (GA4 or Plausible).
+- Real newsletter backend; 2025 tax figures refresh (FEIE, FBAR).
+- Real RSS parsing for news.html; case studies page; partner directory.
+- French-language articles for the French audience.
+
+5. MISSING / NOT BUILT YET
+----------------------------------------------------------------
+- CNAME file and deploy workflow (see section 2).
+
+6. KNOWN BUGS / NEEDS FIXING
+----------------------------------------------------------------
+- Docs disagree about hosting (section 2).
+- partners.html form submission target unverified (old table endpoints were
+  removed elsewhere).
+
+7. NEXT ACTION - START HERE
+----------------------------------------------------------------
+The single most valuable next step is:
+  -> Ask Charles to confirm where americaninfrance.fr is hosted and that
+     auto-deploy from main works; then update section 2 of this file.
+
+8. GOTCHAS / HARD-WON LESSONS
+----------------------------------------------------------------
+- AmericanAbroad was derived from this repo with class renames (gold -> red).
+- Content is general info, not legal/tax advice.
+- Do not delete branch claude/registration-files-email-search-lLqnW without
+  Olivier.
+
+9. CONTACT / ESCALATION
+----------------------------------------------------------------
+Olivier Attia - oattia@gmail.com
+Report mailbox - report@gershonconsulting.com
+
+================================================================
+END OF HANDOFF
+================================================================
